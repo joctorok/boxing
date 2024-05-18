@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dn3ce1xwfesx5"
+path="res://.godot/imported/dodge.mp3-42a4a16ac4173a164c87deaa21be27f5.mp3str"
+
+[deps]
+
+source_file="res://songs/sounds/player sounds/dodge.mp3"
+dest_files=["res://.godot/imported/dodge.mp3-42a4a16ac4173a164c87deaa21be27f5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

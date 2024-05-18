@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqrbqn2m4h6us"]
+
+[ext_resource type="Texture2D" uid="uid://ckk75x6mtk7xd" path="res://icon.svg" id="1_8lrq3"]
+[ext_resource type="Script" path="res://scripts/gameplay/GhostTimer.gd" id="2_gd077"]
+
+[node name="Ghost" type="Sprite2D"]
+self_modulate = Color(0.627451, 1, 1, 0.329412)
+texture = ExtResource("1_8lrq3")
+script = ExtResource("2_gd077")
