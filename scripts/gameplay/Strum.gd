@@ -11,7 +11,7 @@ func strum_tween(time, type):
 	note.position.x = 152
 	note.frame = type - 1
 	var tween = get_tree().create_tween()
-	tween.tween_property(note, "position:x", 0, time)
+	tween.tween_property(note, "position:x", -16, time)
 	tween.finished.connect(on_tween_finished)
 
 func on_tween_finished():
