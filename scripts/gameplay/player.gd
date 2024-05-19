@@ -74,7 +74,7 @@ func player_punch():
 		1:
 			player_animator("punchR", sfxPunch)
 	if PlayerAutoloads.healthPoints < PlayerAutoloads.maxHealthPoints:
-		PlayerAutoloads.healthPoints += 2
+		PlayerAutoloads.healthPoints += 1
 	PlayerAutoloads.score += 20
 	pass
 
@@ -111,7 +111,7 @@ func player_uppercut():
 func player_damage(damagePoints : int):
 	get_parent().cueIncoming = false
 	player_animator("damaged", sfxHurt)
-	PlayerAutoloads.healthPoints -= 2
+	PlayerAutoloads.healthPoints -= damagePoints
 	PlayerAutoloads.score -= 40
 	pass
 

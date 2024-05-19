@@ -23,9 +23,10 @@ func _process(delta):
 			inputPosition = timeToTarget - timer.time_left
 			timeInMs = timeToTarget - inputPosition
 			hit_uppercut.emit(inputPosition, timeToTarget - inputPosition)
-			label.text = "time:" + str(snappedf(timer.time_left, 0.01))
+			$Label/Time.text = str(snappedf(timer.time_left, 0.01))
 			tween.kill()
 			timer.stop()
+			label.show()
 			$time_to_hide.start(0.4)
 			if $marker.scale.x > 1.5:
 				emit_signal("miss_uc")
@@ -39,7 +40,7 @@ func tween_marker():
 	show()
 	$time_to_hide.stop()
 	timer.stop()
-	label.text = "time:" + str(snappedf(timer.time_left, 0.01))
+	label.hide()
 	canHit = true
 	marker.scale = Vector2(3, 3)
 	timer.start(timeToTarget)
