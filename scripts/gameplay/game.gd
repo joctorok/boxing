@@ -18,6 +18,7 @@ func _ready():
 	cueIncoming = false
 
 func _process(delta):
+	$GUI/Score.text = "Score: " + str(PlayerAutoloads.score)
 	pass
 
 func _on_conductor_cue_hit(x, y):
@@ -85,4 +86,5 @@ func _on_conductor_text_display(x, y):
 	textbox.show_text()
 	if x == "":
 		textbox.hide_text()
+		
 	pass # Replace with function body.

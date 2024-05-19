@@ -22,6 +22,10 @@ func _ready():
 	aniPlayer.play("idle")
 
 func _process(delta):
+	if PlayerAutoloads.healthPoints < 0:
+		PlayerAutoloads.healthPoints = 0
+	if PlayerAutoloads.score < 0:
+		PlayerAutoloads.score = 0
 	calculate_timing_windows()
 	player_handler()
 
@@ -93,7 +97,7 @@ func player_dodge(dir : int):
 	$DodgeTimer.start(0.6)
 	$GhostTimer.start(0.02)
 	if PlayerAutoloads.healthPoints < PlayerAutoloads.maxHealthPoints:
-		PlayerAutoloads.healthPoints += 2
+		PlayerAutoloads.healthPoints += 1
 	PlayerAutoloads.score += 20
 	pass
 
@@ -108,7 +112,7 @@ func player_damage(damagePoints : int):
 	get_parent().cueIncoming = false
 	player_animator("damaged", sfxHurt)
 	PlayerAutoloads.healthPoints -= 2
-	PlayerAutoloads.score -= 20
+	PlayerAutoloads.score -= 40
 	pass
 
 func return_to_idle():

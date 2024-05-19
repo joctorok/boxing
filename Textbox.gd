@@ -14,6 +14,7 @@ func show_textbox():
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property($ColorRect, "size:y", 60, 0.25)
 
+
 func show_text():
 	show_textbox()
 	$Label.visible_ratio = 0

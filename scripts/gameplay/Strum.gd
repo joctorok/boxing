@@ -17,5 +17,11 @@ func strum_tween(time, type):
 	tween.tween_property(note, "position:x", -16, time)
 	tween.finished.connect(on_tween_finished)
 
+func fade_visibility(alpha : float):
+	var tween = get_tree().create_tween()
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property(note, "modulate:a", alpha, 0.15)
+	tween.tween_property(noteBackdrop, "modulate:a", alpha, 0.15)
+
 func on_tween_finished():
 	note.hide()
