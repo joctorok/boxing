@@ -22,7 +22,6 @@ func _ready():
 	aniPlayer.play("idle")
 
 func _process(delta):
-	print(isDodging)
 	calculate_timing_windows()
 	player_handler()
 

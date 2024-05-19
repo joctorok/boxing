@@ -1,7 +1,7 @@
 extends Node2D
 
 var readRate : float = 0.05
-@onready var label : = $Label
+@onready var label = $Label
 
 # Called when the node enters the scene tree for the first time
 

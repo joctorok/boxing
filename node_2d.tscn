@@ -1,13 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjfj2xkprqmul"]
+[gd_scene load_steps=14 format=3 uid="uid://bjfj2xkprqmul"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/game.gd" id="1_1qp53"]
 [ext_resource type="AudioStream" uid="uid://cmu155l35wrr6" path="res://songs/round1/round1.ogg" id="1_qvdc0"]
 [ext_resource type="Script" path="res://scripts/audio/Conductor.gd" id="2_m70td"]
-[ext_resource type="Texture2D" uid="uid://i5v0g4wbki0f" path="res://scripts/sprites/wipbg.png" id="5_6mrjx"]
+[ext_resource type="Texture2D" uid="uid://i5v0g4wbki0f" path="res://scripts/sprites/bg/wipbg.png" id="5_6mrjx"]
 [ext_resource type="PackedScene" uid="uid://dysy0ojqquyh5" path="res://scene/uppercut_handler.tscn" id="5_ah5md"]
 [ext_resource type="AudioStream" uid="uid://up45eeo0mdlu" path="res://songs/sounds/ping.mp3" id="5_l6t4d"]
 [ext_resource type="PackedScene" uid="uid://b5a85et3hbvkt" path="res://scene/player.tscn" id="6_dblby"]
 [ext_resource type="PackedScene" uid="uid://8gim7dabpts8" path="res://scene/Textbox.tscn" id="7_st8ni"]
+[ext_resource type="PackedScene" uid="uid://cx8jbnsy55vwb" path="res://scene/Strum.tscn" id="9_ilbve"]
+[ext_resource type="Texture2D" uid="uid://cyppctugmsom1" path="res://scripts/sprites/gui/healthbar_back.png" id="9_oppeg"]
+[ext_resource type="Texture2D" uid="uid://3xmr66s3v78d" path="res://scripts/sprites/gui/healthbar_front.png" id="10_2tuux"]
+[ext_resource type="Texture2D" uid="uid://ddwo0umvxtpwc" path="res://scripts/sprites/gui/healthbar_fill.png" id="11_ne26m"]
+[ext_resource type="Script" path="res://HealthBar.gd" id="12_svna3"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_1qp53")
@@ -29,6 +34,9 @@ volume_db = -2.123
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
+[node name="Strum" parent="GUI" instance=ExtResource("9_ilbve")]
+position = Vector2(42, 8)
+
 [node name="ColorRect" type="ColorRect" parent="GUI"]
 offset_right = 256.0
 offset_bottom = 195.0
@@ -43,6 +51,23 @@ offset_bottom = 23.0
 
 [node name="Textbox" parent="GUI" instance=ExtResource("7_st8ni")]
 position = Vector2(32, 127)
+
+[node name="HealthBar" type="TextureProgressBar" parent="GUI"]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 24.0
+offset_bottom = 184.0
+max_value = 20.0
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("9_oppeg")
+texture_over = ExtResource("10_2tuux")
+texture_progress = ExtResource("11_ne26m")
+script = ExtResource("12_svna3")
 
 [node name="Player" parent="." instance=ExtResource("6_dblby")]
 metadata/_edit_group_ = true

@@ -1,5 +1,5 @@
 extends Node
 
-var healthPoints : int
-var maxHealthPoints : int = 20
+var healthPoints : float
+var maxHealthPoints : float = 20
 var score : float

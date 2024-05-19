@@ -9,10 +9,10 @@ var curCueTime : float
 @onready var cam : = $Camera2D
 @onready var uppercutHandler : = $GUI/UppercutHandler
 @onready var textbox : = $GUI/Textbox
+@onready var strum : = $GUI/Strum
+
 
 @onready var dim : = $GUI/ColorRect
-
-
 
 func _ready():
 	cueIncoming = false
@@ -24,6 +24,7 @@ func _on_conductor_cue_hit(x, y):
 	cueIncoming = true
 	cueType = x
 	curCueTime = y
+	strum.strum_tween(conductor.crochet + conductor.crochet/3, x)
 	var cueTimer : Timer = Timer.new()
 	add_child(cueTimer)
 	cueTimer.one_shot = true
@@ -31,6 +32,7 @@ func _on_conductor_cue_hit(x, y):
 	cueTimer.wait_time = 0
 	cueTimer.timeout.connect(_on_cue_timer_timeout)
 	cueTimer.start(conductor.crochet + (conductor.crochet/3))
+	
 	pass # Replace with function body.
 
 func _on_cue_timer_timeout():
@@ -57,7 +59,6 @@ func _on_conductor_uppercut_hit(x, y):
 func uppercut_create(x):
 	uppercutHandler.timeToTarget = x
 	uppercutHandler.tween_marker()
-
 
 func _on_uppercut_handler_hit_uc(): 
 	player.player_uppercut()

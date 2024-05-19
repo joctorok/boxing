@@ -27,10 +27,11 @@ func _process(delta):
 			tween.kill()
 			timer.stop()
 			$time_to_hide.start(0.4)
-			if $target.scale.x <= 1.05:
-				emit_signal("hit_uc")
-			else:
+			if $marker.scale.x > 1.5:
 				emit_signal("miss_uc")
+				
+			else:
+				emit_signal("hit_uc")
 			canHit = false
 
 

@@ -102,6 +102,10 @@
 													
 		],
 		"text" : [
+			["Okay, so this whole thing was reprogrammed.", 2],
+			["Everything from the rhythm calculations to even just the dodge was reprogrammed for flexibility.", 10],
+			["All that you see here is unfinished, just give it some time...", 22],
+			["", 33],
 			["Heh... You're pretty good...", 129],
 			["...for a human.", 137],
 			["But don't think you've already won.", 143],
@@ -111,10 +115,8 @@
 			
 		],
 		"uppercuts" : [	
-			[3, 5],			
 			[3, 125],
-			[1, 165],			
-			[1, 167],
+			[3, 165],			
 			[3, 189],
 			[3, 221],
 			[3, 253]

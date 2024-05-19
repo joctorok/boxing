@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc5xmjlkkwqkg"
-path="res://.godot/imported/placeholder.png-da9894e1bb82260087252742dc2f3bc6.ctex"
+uid="uid://dc4ejkac7d11x"
+path="res://.godot/imported/noteBackdrop.png-99e3906a3df859353fc444fb94d1d0d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scripts/sprites/placeholder.png"
-dest_files=["res://.godot/imported/placeholder.png-da9894e1bb82260087252742dc2f3bc6.ctex"]
+source_file="res://scripts/sprites/gui/noteBackdrop.png"
+dest_files=["res://.godot/imported/noteBackdrop.png-99e3906a3df859353fc444fb94d1d0d8.ctex"]
 
 [params]
 
