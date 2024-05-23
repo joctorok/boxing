@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tatb4ucabtd7"
-path="res://.godot/imported/placeholder_bot.png-1bd1d0f2a6e569faf050bf04f2cceae3.ctex"
+uid="uid://fm6wqy1ou6on"
+path="res://.godot/imported/uppercut2.png-afeaded1926e21519fe3701a41df8395.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scripts/sprites/bots/placeholder_bot.png"
-dest_files=["res://.godot/imported/placeholder_bot.png-1bd1d0f2a6e569faf050bf04f2cceae3.ctex"]
+source_file="res://sprites/gui/uppercut2.png"
+dest_files=["res://.godot/imported/uppercut2.png-afeaded1926e21519fe3701a41df8395.ctex"]
 
 [params]
 

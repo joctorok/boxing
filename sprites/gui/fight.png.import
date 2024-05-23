@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc4ejkac7d11x"
-path="res://.godot/imported/noteBackdrop.png-99e3906a3df859353fc444fb94d1d0d8.ctex"
+uid="uid://bbkfpkkwm45t7"
+path="res://.godot/imported/fight.png-b418395558b388535655c8cc213670b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scripts/sprites/gui/noteBackdrop.png"
-dest_files=["res://.godot/imported/noteBackdrop.png-99e3906a3df859353fc444fb94d1d0d8.ctex"]
+source_file="res://sprites/gui/fight.png"
+dest_files=["res://.godot/imported/fight.png-b418395558b388535655c8cc213670b1.ctex"]
 
 [params]
 

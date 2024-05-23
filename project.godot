@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 PlayerAutoloads="*res://scripts/gameplay/playerAutoloads.gd"
 SceneSwitcher="*res://scene/scene_switcher.tscn"
-LevelManager="*res://levelManager.gd"
+LevelManager="*res://scripts/gameplay/levelManager.gd"
 
 [display]
 

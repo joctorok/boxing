@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jq75jf40gfnh"
-path="res://.godot/imported/boxer_dead.png-01b7b82646b37e46a5acaeab3f44f5e3.ctex"
+uid="uid://tatb4ucabtd7"
+path="res://.godot/imported/placeholder_bot.png-34c504cda74a1473836b59a780f5f107.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scripts/sprites/player/boxer_dead.png"
-dest_files=["res://.godot/imported/boxer_dead.png-01b7b82646b37e46a5acaeab3f44f5e3.ctex"]
+source_file="res://sprites/bots/placeholder_bot.png"
+dest_files=["res://.godot/imported/placeholder_bot.png-34c504cda74a1473836b59a780f5f107.ctex"]
 
 [params]
 

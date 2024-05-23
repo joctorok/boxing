@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i5v0g4wbki0f"
-path="res://.godot/imported/wipbg.png-b67a3690ed936231f88367ec1e34eabc.ctex"
+uid="uid://dc5xmjlkkwqkg"
+path="res://.godot/imported/placeholder.png-1c98ce80eed18813f225c0d7ec6ec0d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scripts/sprites/bg/wipbg.png"
-dest_files=["res://.godot/imported/wipbg.png-b67a3690ed936231f88367ec1e34eabc.ctex"]
+source_file="res://sprites/bg/placeholder.png"
+dest_files=["res://.godot/imported/placeholder.png-1c98ce80eed18813f225c0d7ec6ec0d6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn0m52o8igfp2"
-path="res://.godot/imported/green_boxer.png-3f99b04eafbe8913f2b8a94752b4142d.ctex"
+uid="uid://sirofax4xo2f"
+path="res://.godot/imported/boxer.png-eba8b790c9393d4dfde259af1f633434.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scripts/sprites/player/green_boxer.png"
-dest_files=["res://.godot/imported/green_boxer.png-3f99b04eafbe8913f2b8a94752b4142d.ctex"]
+source_file="res://sprites/player/boxer.png"
+dest_files=["res://.godot/imported/boxer.png-eba8b790c9393d4dfde259af1f633434.ctex"]
 
 [params]
 

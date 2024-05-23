@@ -1,8 +1,8 @@
 extends Sprite2D
 
 const botSprites = [
-	"res://scripts/sprites/bots/kb_enemy.png",
-	"res://scripts/sprites/bots/placeholder_bot.png"
+	"res://sprites/bots/kb_enemy.png",
+	"res://sprites/bots/placeholder_bot.png"
 ]
 @export var botIndex : int
 @onready var aniPlayer : = $AnimationPlayer

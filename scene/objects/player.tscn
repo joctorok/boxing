@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://b5a85et3hbvkt"]
 
-[ext_resource type="Texture2D" uid="uid://sirofax4xo2f" path="res://scripts/sprites/player/boxer.png" id="1_twwfp"]
+[ext_resource type="Texture2D" uid="uid://sirofax4xo2f" path="res://sprites/player/boxer.png" id="1_twwfp"]
 [ext_resource type="Script" path="res://scripts/gameplay/player.gd" id="2_q17di"]
 [ext_resource type="AudioStream" uid="uid://bcn1broll0kpg" path="res://sounds/player sounds/punch.mp3" id="3_hr6qm"]
 [ext_resource type="AudioStream" uid="uid://dn3ce1xwfesx5" path="res://sounds/player sounds/dodge.mp3" id="4_pet71"]

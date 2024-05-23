@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kmgn2sn5add0"
-path="res://.godot/imported/kb_enemy.png-00a48a5a86e81e9b8e060f67f43c9a14.ctex"
+uid="uid://cyppctugmsom1"
+path="res://.godot/imported/healthbar_back.png-cadc300212cf569fb5897455ed1c3d3f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scripts/sprites/bots/kb_enemy.png"
-dest_files=["res://.godot/imported/kb_enemy.png-00a48a5a86e81e9b8e060f67f43c9a14.ctex"]
+source_file="res://sprites/gui/healthbar_back.png"
+dest_files=["res://.godot/imported/healthbar_back.png-cadc300212cf569fb5897455ed1c3d3f.ctex"]
 
 [params]
 
