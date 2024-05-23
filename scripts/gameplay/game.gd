@@ -71,6 +71,7 @@ func uppercut_create(x):
 
 func _on_uppercut_handler_hit_uc(): 
 	player.player_uppercut()
+	bot.aniPlayer.play("hit")
 	player.inUppercut = false
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
 	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
@@ -81,6 +82,7 @@ func _on_uppercut_handler_hit_uc():
 
 func _on_uppercut_handler_miss_uc():
 	player.player_damage(4)
+	bot.punch_player("L")
 	player.inUppercut = false
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
 	tween.tween_property(cam, "zoom", Vector2(1, 1), 0.75)
