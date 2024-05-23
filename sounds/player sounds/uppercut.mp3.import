@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bdwexasawas40"
+path="res://.godot/imported/uppercut.mp3-545f03b4273acaac8b7ca291f66fa0af.mp3str"
+
+[deps]
+
+source_file="res://sounds/player sounds/uppercut.mp3"
+dest_files=["res://.godot/imported/uppercut.mp3-545f03b4273acaac8b7ca291f66fa0af.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

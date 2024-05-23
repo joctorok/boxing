@@ -1,0 +1,48 @@
+{
+	"song" : {        
+		"name" : "mixed_signals",
+		"bpm" : 90,
+		"player" : "boxer",
+		"cues_to_play" : [
+			[1, 33],
+			[1, 35],
+			[1, 37],
+			[1, 39],
+			[2, 65],
+			[3, 67],
+			[2, 69],
+			[3, 71]
+		],
+		"text" : [
+			["Hey! Welcome to Little Sound Boxing.", 9],
+			["This isn't like most rhythm games so lemme give you the gist of how to box.", 17],
+			["When you hear 'HAI!', press SPACE on the next beat.", 25],
+			["Press SPACE to PUNCH!", 33],
+			["Easy enough right?", 41],
+			["Now let's try dodging left and right.", 49],
+			["When you hear 'LEFT' or 'RIGHT', press the left or right arrow keys to DODGE.", 57],
+			["Press LEFT and RIGHT to DODGE!", 65],
+			["Damn! You're doin' great! Unless you weren't. In that case, you get an A for effort!", 73],
+			["When the green marker reaches the white one, press SPACE to perform an Uppercut!", 81],
+			["Use the little pinging sound to time it as perfectly as possible!", 89],
+			["", 97],
+			["This game isn't like most rhythm games, it's a bit trickier than hitting arrows when they show up on screen...", 105],
+			["... But I believe you've got what it takes to be a champion, kid!", 116],
+			["See you in the ring!", 123]
+		],
+		"uppercuts" : [
+			[3, 97],
+			[3, 101]
+		],
+		"cam_control" : [
+			[1.25, 9, false],
+			[1, 33, true],	
+			[1.25, 41, false],
+			[1, 65, true],		
+			[1.25, 73, false],
+			[1, 89, true],
+			[1.25, 41, false],
+			[1, 65, true],	
+		]
+	}
+}

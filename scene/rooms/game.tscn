@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=3 uid="uid://y0c47jdk53jr"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/game.gd" id="1_qr4xs"]
+[ext_resource type="Texture2D" uid="uid://dc5xmjlkkwqkg" path="res://scripts/sprites/bg/placeholder.png" id="2_i1cw8"]
+[ext_resource type="PackedScene" uid="uid://br5cms0su4vur" path="res://scene/objects/bot.tscn" id="3_rjipp"]
+[ext_resource type="Script" path="res://scripts/audio/Conductor.gd" id="4_c8hd5"]
+[ext_resource type="AudioStream" uid="uid://up45eeo0mdlu" path="res://sounds/ping.mp3" id="5_frwru"]
+[ext_resource type="PackedScene" uid="uid://dysy0ojqquyh5" path="res://scene/gui/uppercut_handler.tscn" id="6_saj65"]
+[ext_resource type="PackedScene" uid="uid://8gim7dabpts8" path="res://scene/gui/Textbox.tscn" id="7_46ewt"]
+[ext_resource type="Texture2D" uid="uid://cyppctugmsom1" path="res://scripts/sprites/gui/healthbar_back.png" id="8_e3jn2"]
+[ext_resource type="Texture2D" uid="uid://3xmr66s3v78d" path="res://scripts/sprites/gui/healthbar_front.png" id="9_uahyc"]
+[ext_resource type="Texture2D" uid="uid://ddwo0umvxtpwc" path="res://scripts/sprites/gui/healthbar_fill.png" id="10_ott2q"]
+[ext_resource type="Script" path="res://HealthBar.gd" id="11_2hhkl"]
+[ext_resource type="PackedScene" uid="uid://cx8jbnsy55vwb" path="res://scene/gui/Strum.tscn" id="12_y0e54"]
+[ext_resource type="FontFile" uid="uid://jxerprayhk57" path="res://NintendoDSBIOS.ttf" id="13_4ow1o"]
+[ext_resource type="PackedScene" uid="uid://b5a85et3hbvkt" path="res://scene/objects/player.tscn" id="14_wr018"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_qr4xs")
+
+[node name="Wipbg" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.384314)
+position = Vector2(120, 96)
+scale = Vector2(0.803318, 0.803318)
+texture = ExtResource("2_i1cw8")
+
+[node name="Bot" parent="." instance=ExtResource("3_rjipp")]
+
+[node name="Conductor" type="AudioStreamPlayer2D" parent="."]
+bus = &"Music"
+script = ExtResource("4_c8hd5")
+
+[node name="UppercutTimer" type="Timer" parent="Conductor"]
+
+[node name="Ping" type="AudioStreamPlayer2D" parent="Conductor"]
+stream = ExtResource("5_frwru")
+volume_db = -2.123
+bus = &"SoundFX"
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="GUI"]
+offset_right = 256.0
+offset_bottom = 195.0
+color = Color(0, 0, 0, 0)
+
+[node name="UppercutHandler" parent="GUI" instance=ExtResource("6_saj65")]
+position = Vector2(128, 78)
+
+[node name="Label" type="Label" parent="GUI"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Textbox" parent="GUI" instance=ExtResource("7_46ewt")]
+position = Vector2(32, 8)
+
+[node name="HealthBar" type="TextureProgressBar" parent="GUI"]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 24.0
+offset_bottom = 184.0
+max_value = 20.0
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("8_e3jn2")
+texture_over = ExtResource("9_uahyc")
+texture_progress = ExtResource("10_ott2q")
+script = ExtResource("11_2hhkl")
+
+[node name="Strum" parent="GUI" instance=ExtResource("12_y0e54")]
+position = Vector2(45, 152)
+
+[node name="Score" type="Label" parent="GUI"]
+offset_left = 152.0
+offset_top = 136.0
+offset_right = 192.0
+offset_bottom = 159.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("13_4ow1o")
+text = "Score: "
+
+[node name="Player" parent="." instance=ExtResource("14_wr018")]
+metadata/_edit_group_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 136)
+limit_left = -60
+limit_top = -35
+limit_right = 315
+limit_bottom = 190
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+editor_draw_limits = true
+metadata/_edit_group_ = true
+
+[connection signal="changeCamScale" from="Conductor" to="." method="_on_conductor_change_cam_scale"]
+[connection signal="cueHit" from="Conductor" to="." method="_on_conductor_cue_hit"]
+[connection signal="finished" from="Conductor" to="." method="_on_conductor_finished"]
+[connection signal="textDisplay" from="Conductor" to="." method="_on_conductor_text_display"]
+[connection signal="uppercutHit" from="Conductor" to="." method="_on_conductor_uppercut_hit"]
+[connection signal="timeout" from="Conductor/UppercutTimer" to="Conductor" method="_on_uppercut_timer_timeout"]
+[connection signal="hit_uc" from="GUI/UppercutHandler" to="." method="_on_uppercut_handler_hit_uc"]
+[connection signal="miss_uc" from="GUI/UppercutHandler" to="." method="_on_uppercut_handler_miss_uc"]
+[connection signal="hit_cue" from="Player" to="Bot" method="_on_player_hit_cue"]
+[connection signal="miss_cue" from="Player" to="Bot" method="_on_player_miss_cue"]

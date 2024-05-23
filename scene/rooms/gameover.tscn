@@ -1,0 +1,177 @@
+[gd_scene load_steps=10 format=3 uid="uid://f32g08w8psa7"]
+
+[ext_resource type="Texture2D" uid="uid://jq75jf40gfnh" path="res://scripts/sprites/player/boxer_dead.png" id="1_4to6h"]
+[ext_resource type="Script" path="res://scripts/gameplay/gameover.gd" id="1_dkyvu"]
+[ext_resource type="AudioStream" uid="uid://b7ytevsk4wglf" path="res://sounds/damaged.mp3" id="3_44bf1"]
+[ext_resource type="AudioStream" uid="uid://5a7o62wkd2df" path="res://music/gameover.ogg" id="4_jt7qq"]
+[ext_resource type="FontFile" uid="uid://brn61jh7cwgm7" path="res://Nintendo-DS-BIOS.ttf" id="5_o8n7m"]
+
+[sub_resource type="Animation" id="Animation_gh1js"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Camera2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 96)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../sfx")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/3/use_blend = true
+
+[sub_resource type="Animation" id="Animation_3twhl"]
+resource_name = "player_death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.565, 1.565)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Camera2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 1.3),
+"transitions": PackedFloat32Array(0.5, 0.5, -2.14355, -2.14355),
+"update": 0,
+"values": [Vector2(128, 96), Vector2(112, 120), Vector2(112, 120), Vector2(88, 152)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../sfx")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0324548,
+"stream": ExtResource("3_44bf1")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8f7ds"]
+_data = {
+"RESET": SubResource("Animation_gh1js"),
+"player_death": SubResource("Animation_3twhl")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_m1uou"]
+font = ExtResource("5_o8n7m")
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
+[node name="gameover" type="Node2D"]
+script = ExtResource("1_dkyvu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../player_dead")
+libraries = {
+"": SubResource("AnimationLibrary_8f7ds")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -16.0
+offset_right = 264.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 96)
+scale = Vector2(2, 2)
+
+[node name="player_dead" type="Sprite2D" parent="."]
+position = Vector2(92.512, 144)
+texture = ExtResource("1_4to6h")
+hframes = 4
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_jt7qq")
+volume_db = -0.658
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 232.0
+offset_bottom = 72.0
+text = "Well, don't just lie there. Press ENTER to try again. If you're too much of a wimp, just hurry up and press ESCAPE!"
+label_settings = SubResource("LabelSettings_m1uou")
+horizontal_alignment = 1
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="music" to="." method="_on_music_finished"]

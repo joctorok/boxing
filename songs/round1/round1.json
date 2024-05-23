@@ -1,6 +1,6 @@
 {
 	"song" : {        
-		"name" : "round_1",
+		"name" : "knuckle_burger",
 		"bpm" : 140,
 		"player" : "boxer",
 		"enemy" : "kb_enemy",
@@ -111,7 +111,6 @@
 			
 		],
 		"uppercuts" : [	
-			[3, 5],
 			[3, 125],
 			[3, 165],			
 			[3, 189],

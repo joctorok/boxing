@@ -3,6 +3,8 @@ extends AudioStreamPlayer2D
 var bpm : float
 var crochet : float
 var songPosition : float
+var offset : float = 0.028
+
 var lastBeat : float = 0
 var songPositionInBeats : float
 
@@ -12,7 +14,7 @@ signal changeCamScale(x, y, z)
 signal uppercutHit(x, y)
 signal textDisplay(x, y)
 
-var chart := "res://songs/round1/round1.json"
+@export var chart : String
 
 func _ready():
 	initSong()
@@ -27,7 +29,7 @@ func _process(delta):
 	#pass
 
 func beatProcess():
-	var chartData = readJSON(chart)
+	var chartData = readJSON("res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel+".json")
 	if songPosition > lastBeat + crochet:
 		for cue in chartData.song.cues_to_play:
 			if (songPositionInBeats) == cue[1]:
@@ -56,11 +58,12 @@ func readJSON(path : String):
 	return JSON.parse_string(json.get_as_text())
 
 func initSong():
-	var chartData = readJSON(chart)
+	var chartData = readJSON("res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel+".json")
+	var songAudio = "res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel + ".mp3"
+	stream = load(songAudio)
 	bpm = chartData.song.bpm
 	crochet = 60/bpm
-	play()
-
+	play(offset)
 
 func _on_uppercut_timer_timeout():
 	$UppercutTimer.stop()

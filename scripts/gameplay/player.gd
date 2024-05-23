@@ -7,7 +7,7 @@ extends Sprite2D
 @onready var sfxHurt : = $HurtSFX
 @onready var sfxUppercut : = $UppercutSFX
 
-var ghost_scene = preload("res://scene/Ghost.tscn")
+var ghost_scene = preload("res://scene/objects/Ghost.tscn")
 
 var inUppercut : bool
 var canHit : bool
@@ -15,6 +15,9 @@ var sfxOffset : float = 0.028
 var punchIndex : int = 1
 
 var isDodging : bool
+
+signal hit_cue(x)
+signal miss_cue(x)
 
 func _ready():
 	z_index = 2
@@ -44,6 +47,7 @@ func player_handler():
 		if (Input.is_action_just_pressed("ui_accept") and canHit):
 			if get_parent().cueType == 1:
 				player_punch()
+				hit_cue.emit(1)
 			else:
 				player_damage(2)
 		elif (Input.is_action_just_pressed("ui_accept") and not canHit):
@@ -52,6 +56,7 @@ func player_handler():
 		if (Input.is_action_just_pressed("ui_left") and canHit):
 			if get_parent().cueType == 2:
 				player_dodge(-1)
+				hit_cue.emit(2)
 			else:
 				player_damage(2)
 		elif (Input.is_action_just_pressed("ui_left") and !canHit):
@@ -60,6 +65,7 @@ func player_handler():
 		if (Input.is_action_just_pressed("ui_right") and canHit):
 			if get_parent().cueType == 3:
 				player_dodge(1)
+				hit_cue.emit(3)
 			else:
 				player_damage(2)
 		elif (Input.is_action_just_pressed("ui_right") and !canHit):

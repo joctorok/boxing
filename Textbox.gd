@@ -27,7 +27,7 @@ func hide_text():
 	$Timer.stop()
 	$Label.text = ""
 	var tween = get_tree().create_tween()
-	tween.tween_property($ColorRect, "size:y", 0, 0.25)
+	tween.tween_property($ColorRect, "size:y", 0, 0.5)
 
 func _on_timer_timeout():
 	if $Label.visible_ratio < 1:

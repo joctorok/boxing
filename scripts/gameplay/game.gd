@@ -8,6 +8,7 @@ var curCueTime : float
 @onready var conductor : = $Conductor
 @onready var cam : = $Camera2D
 @onready var uppercutHandler : = $GUI/UppercutHandler
+@onready var bot : = $Bot
 @onready var textbox : = $GUI/Textbox
 @onready var strum : = $GUI/Strum
 
@@ -15,10 +16,16 @@ var curCueTime : float
 @onready var dim : = $GUI/ColorRect
 
 func _ready():
+	PlayerAutoloads.score = 0
 	cueIncoming = false
 
 func _process(delta):
 	$GUI/Score.text = "Score: " + str(PlayerAutoloads.score)
+	if Input.is_action_just_pressed("gm_quit"):
+		conductor.stop()
+		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
+	if PlayerAutoloads.healthPoints < 0:
+		get_tree().change_scene_to_file("res://scene/rooms/gameover.tscn")
 	pass
 
 func _on_conductor_cue_hit(x, y):
@@ -39,6 +46,7 @@ func _on_conductor_cue_hit(x, y):
 func _on_cue_timer_timeout():
 	if cueIncoming == true:
 		player.player_damage(2)
+		player.miss_cue.emit(cueType)
 		cueIncoming = false
 
 func _on_conductor_change_cam_scale(x, y, z):
@@ -86,5 +94,13 @@ func _on_conductor_text_display(x, y):
 	textbox.show_text()
 	if x == "":
 		textbox.hide_text()
-		
+	pass # Replace with function body.
+
+
+func _on_conductor_finished():
+	if LevelManager.levelIndex == (len(LevelManager.levelList) - 1):
+		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
+	else:
+		LevelManager.levelIndex += 1
+		LevelManager.go_to_level(LevelManager.levelIndex)
 	pass # Replace with function body.
