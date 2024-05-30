@@ -6,6 +6,11 @@ extends Sprite2D
 @onready var sfxDodge : = $DodgeSFX
 @onready var sfxHurt : = $HurtSFX
 @onready var sfxUppercut : = $UppercutSFX
+@onready var sfxBlock : = $BlockSFX
+
+@onready var dodgeTimer : = $DodgeTimer
+@onready var ghostTimer : = $GhostTimer
+
 
 var ghost_scene = preload("res://scene/objects/Ghost.tscn")
 
@@ -68,6 +73,12 @@ func player_handler():
 				hit_cue.emit(3)
 			else:
 				player_damage(2)
+		if (Input.is_action_just_pressed("ui_down") and canHit):
+			if get_parent().cueType == 4:
+				player_block()
+				hit_cue.emit(4)
+			else:
+				player_damage(2)
 		elif (Input.is_action_just_pressed("ui_right") and !canHit):
 			player_damage(2)
 
@@ -82,6 +93,14 @@ func player_punch():
 	if PlayerAutoloads.healthPoints < PlayerAutoloads.maxHealthPoints:
 		PlayerAutoloads.healthPoints += 1
 	PlayerAutoloads.score += 20
+	pass
+
+func player_block():
+	get_parent().cueIncoming = false
+	player_animator("block", sfxBlock)
+	if PlayerAutoloads.healthPoints < PlayerAutoloads.maxHealthPoints:
+		PlayerAutoloads.healthPoints += 2
+	PlayerAutoloads.score += 40
 	pass
 
 func player_animator(animName, sfxIndex):
@@ -99,9 +118,9 @@ func player_dodge(dir : int):
 		1:
 			player_animator("dodgeR", sfxDodge)
 	isDodging = true
-	$DodgeTimer.stop()
-	$DodgeTimer.start(0.6)
-	$GhostTimer.start(0.02)
+	dodgeTimer.stop()
+	dodgeTimer.start(0.6)
+	ghostTimer.start(0.02)
 	if PlayerAutoloads.healthPoints < PlayerAutoloads.maxHealthPoints:
 		PlayerAutoloads.healthPoints += 1
 	PlayerAutoloads.score += 20
@@ -122,14 +141,14 @@ func player_damage(damagePoints : int):
 	pass
 
 func return_to_idle():
-	$GhostTimer.stop()
+	ghostTimer.stop()
 	aniPlayer.play("idle")
 
 
 func _on_dodge_timer_timeout():
-	$GhostTimer.stop()
+	ghostTimer.stop()
 	isDodging = false
-	$DodgeTimer.stop()
+	dodgeTimer.stop()
 	pass # Replace with function body.
 
 func ghost_instance():

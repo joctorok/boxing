@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://y0c47jdk53jr"]
+[gd_scene load_steps=17 format=3 uid="uid://y0c47jdk53jr"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/game.gd" id="1_qr4xs"]
 [ext_resource type="Texture2D" uid="uid://dc5xmjlkkwqkg" path="res://sprites/bg/placeholder.png" id="2_i1cw8"]
@@ -11,9 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://3xmr66s3v78d" path="res://sprites/gui/healthbar_front.png" id="9_uahyc"]
 [ext_resource type="Texture2D" uid="uid://ddwo0umvxtpwc" path="res://sprites/gui/healthbar_fill.png" id="10_ott2q"]
 [ext_resource type="Script" path="res://scripts/HealthBar.gd" id="11_2hhkl"]
-[ext_resource type="PackedScene" uid="uid://cx8jbnsy55vwb" path="res://scene/gui/Strum.tscn" id="12_y0e54"]
 [ext_resource type="FontFile" uid="uid://jxerprayhk57" path="res://NintendoDSBIOS.ttf" id="13_4ow1o"]
+[ext_resource type="AudioStream" uid="uid://cvi7pploxv3k3" path="res://sounds/cuePunch.ogg" id="14_qha2r"]
 [ext_resource type="PackedScene" uid="uid://b5a85et3hbvkt" path="res://scene/objects/player.tscn" id="14_wr018"]
+[ext_resource type="AudioStream" uid="uid://bsggkfjlxek37" path="res://sounds/cueLeft.ogg" id="15_lw7mt"]
+[ext_resource type="AudioStream" uid="uid://kb5dy28f26gb" path="res://sounds/cueRight.ogg" id="16_1ah81"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qr4xs")
@@ -44,6 +46,11 @@ offset_right = 256.0
 offset_bottom = 195.0
 color = Color(0, 0, 0, 0)
 
+[node name="Flash" type="ColorRect" parent="GUI"]
+offset_right = 256.0
+offset_bottom = 195.0
+color = Color(1, 1, 1, 0)
+
 [node name="UppercutHandler" parent="GUI" instance=ExtResource("6_saj65")]
 position = Vector2(128, 78)
 
@@ -71,14 +78,11 @@ texture_over = ExtResource("9_uahyc")
 texture_progress = ExtResource("10_ott2q")
 script = ExtResource("11_2hhkl")
 
-[node name="Strum" parent="GUI" instance=ExtResource("12_y0e54")]
-position = Vector2(45, 152)
-
 [node name="Score" type="Label" parent="GUI"]
-offset_left = 152.0
-offset_top = 136.0
-offset_right = 192.0
-offset_bottom = 159.0
+offset_left = 176.0
+offset_top = 168.0
+offset_right = 216.0
+offset_bottom = 191.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("13_4ow1o")
@@ -92,6 +96,7 @@ remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(128, 136)
+scale = Vector2(1, 0.944444)
 limit_left = -60
 limit_top = -35
 limit_right = 315
@@ -101,6 +106,20 @@ position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 editor_draw_limits = true
 metadata/_edit_group_ = true
+
+[node name="Cues" type="Node" parent="."]
+
+[node name="Hai" type="AudioStreamPlayer2D" parent="Cues"]
+stream = ExtResource("14_qha2r")
+volume_db = 5.0
+
+[node name="Left" type="AudioStreamPlayer2D" parent="Cues"]
+stream = ExtResource("15_lw7mt")
+volume_db = 5.0
+
+[node name="Right" type="AudioStreamPlayer2D" parent="Cues"]
+stream = ExtResource("16_1ah81")
+volume_db = 5.0
 
 [connection signal="changeCamScale" from="Conductor" to="." method="_on_conductor_change_cam_scale"]
 [connection signal="cueHit" from="Conductor" to="." method="_on_conductor_cue_hit"]

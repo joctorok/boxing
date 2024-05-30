@@ -1,10 +1,11 @@
 {
 	"song" : {        
-		"name" : "knuckle_burger",
+		"name" : "Knuckle Burger",
 		"bpm" : 140,
 		"player" : "boxer",
 		"enemy" : "kb_enemy",
 		"cues_to_play" : [
+			[4, 4],
 			[1, 17],
 			[1, 19], 
 			[1, 21],

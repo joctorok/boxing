@@ -13,7 +13,7 @@ func _ready():
 	aniPlayer.play("idle")
 	texture = load(botSprites[botIndex])
 	match LevelManager.levelIndex:
-		0:
+		0, 2:
 			texture = load(botSprites[1])
 			hframes = 2
 		1:
@@ -37,7 +37,7 @@ func _on_player_miss_cue(x):
 	match x:
 		1, 2:
 			punch_player("L")
-		3:
+		3, 4:
 			punch_player("R")
 	pass # Replace with function body.
 
@@ -48,6 +48,6 @@ func _on_player_hit_cue(x):
 			damage_self() 
 		2:
 			punch_player("L")
-		3:
+		3, 4:
 			punch_player("R")		
 	pass # Replace with function body.

@@ -8,6 +8,8 @@ var offset : float = 0.028
 var lastBeat : float = 0
 var songPositionInBeats : float
 
+@onready var ucTimer = $UppercutTimer
+
 signal beatHit 
 signal cueHit(x, y)
 signal changeCamScale(x, y, z)
@@ -33,7 +35,6 @@ func beatProcess():
 	if songPosition > lastBeat + crochet:
 		for cue in chartData.song.cues_to_play:
 			if (songPositionInBeats) == cue[1]:
-				print(cue[1])
 				cueHit.emit(cue[0], cue[1])
 		if "cam_control" in chartData.song:
 			for camData in chartData.song.cam_control:
@@ -47,8 +48,8 @@ func beatProcess():
 			for uppercutData in chartData.song.uppercuts:
 				if songPositionInBeats == uppercutData[1]:
 					uppercutHit.emit(uppercutData[0], uppercutData[1])
-					$UppercutTimer.start(uppercutData[0] * crochet)
-		if $UppercutTimer.time_left > 0:
+					ucTimer.start(uppercutData[0] * crochet)
+		if ucTimer.time_left > 0:
 			$Ping.play(0.028)
 		emit_signal("beatHit")
 		lastBeat += crochet
@@ -59,11 +60,11 @@ func readJSON(path : String):
 
 func initSong():
 	var chartData = readJSON("res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel+".json")
-	var songAudio = "res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel + ".mp3"
+	var songAudio = "res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel + ".ogg"
 	stream = load(songAudio)
 	bpm = chartData.song.bpm
 	crochet = 60/bpm
-	play(offset)
+	play()
 
 func _on_uppercut_timer_timeout():
 	$UppercutTimer.stop()

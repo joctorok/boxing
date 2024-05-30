@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b4v43v0lq1pu5"
+path="res://.godot/imported/blockSfx.mp3-7ed96540ef09f93437224688a2a1cc7f.mp3str"
+
+[deps]
+
+source_file="res://sounds/player sounds/blockSfx.mp3"
+dest_files=["res://.godot/imported/blockSfx.mp3-7ed96540ef09f93437224688a2a1cc7f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

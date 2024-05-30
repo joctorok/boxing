@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PlayerAutoloads="*res://scripts/gameplay/playerAutoloads.gd"
 SceneSwitcher="*res://scene/scene_switcher.tscn"
 LevelManager="*res://scripts/gameplay/levelManager.gd"
+MenuState="*res://scripts/gameplay/menu_state.gd"
 
 [display]
 

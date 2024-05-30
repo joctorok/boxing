@@ -3,12 +3,11 @@ extends Node
 var currentLevel : String
 const levelList = [
 	"tutorial",
-	"round1"
+	"round1",
+	"blocktut"
 ]
 var levelIndex : int
-
-func _process(delta):
-	print(levelIndex)
+var inStoryMode : bool
 
 func go_to_level(index):
 	levelIndex = index
