@@ -31,7 +31,7 @@ func _process(delta):
 	#pass
 
 func beatProcess():
-	var chartData = readJSON(chart)
+	var chartData = readJSON("res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel+".json")
 	if songPosition > lastBeat + crochet:
 		for cue in chartData.song.cues_to_play:
 			if (songPositionInBeats) == cue[1]:
@@ -59,8 +59,8 @@ func readJSON(path : String):
 	return JSON.parse_string(json.get_as_text())
 
 func initSong():
-	var chartData = readJSON(chart)
-	var songAudio = "res://songs/round2/round2.ogg"
+	var chartData = readJSON("res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel+".json")
+	var songAudio = "res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel + ".ogg"
 	stream = load(songAudio)
 	bpm = chartData.song.bpm
 	crochet = 60/bpm
