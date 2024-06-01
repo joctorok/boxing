@@ -10,11 +10,11 @@ var curCueTime : float
 @onready var uppercutHandler : = $GUI/UppercutHandler
 @onready var bot : = $Bot
 @onready var textbox : = $GUI/Textbox
-@onready var cueHai : = $Cues/Hai
-@onready var cueLeft : = $Cues/Left
-@onready var cueParry : = $Cues/Parry
+@onready var cueHai : = $Cues/HaiAS
+@onready var cueLeft : = $Cues/LeftAS
+@onready var cueParry : = $Cues/ParryAS
 
-@onready var cueRight : = $Cues/Right
+@onready var cueRight : = $Cues/RIghtAS
 
 
 @onready var dim : = $GUI/ColorRect

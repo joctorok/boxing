@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var title : = $Title
-@onready var introSound : = $Intro
+@onready var introSound : = $IntroAS
 @onready var menuOptions : = $MainMenu
 @onready var trackList : = $TrackList
 
@@ -25,7 +25,7 @@ func _ready():
 		tween.tween_property(title, "position:y", 96, .75)
 		LevelManager.currentLevel = ""
 	else:
-		$Music.play()
+		$MusicAS.play()
 		
 	pass # Replace with function body.
 
@@ -118,7 +118,7 @@ func _on_tutorial_pressed():
 
 
 func _on_intro_finished():
-	$Music.play()
+	$MusicAS.play()
 	if MenuState.state == MenuState.s.Start:
 		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		tween3.tween_property(text, "theme_override_colors/font_color:a", 1, 0.50)

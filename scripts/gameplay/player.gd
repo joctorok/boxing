@@ -111,7 +111,7 @@ func player_animator(animName, sfxIndex):
 	pass
 
 func player_dodge(dir : int):
-	get_parent().cueIncoming = false
+	get_parent().cueIncoming = false 
 	match dir:
 		-1:
 			player_animator("dodgeL", sfxDodge)

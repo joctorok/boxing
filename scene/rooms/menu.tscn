@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://boj3lrqyfw7jb"]
+[gd_scene load_steps=4 format=3 uid="uid://boj3lrqyfw7jb"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/menuPlaceholder.gd" id="1_6q1wa"]
 [ext_resource type="Texture2D" uid="uid://oajv51fduw5l" path="res://titleLogo.png" id="2_1oyo4"]
 [ext_resource type="AudioStream" uid="uid://21chdsid6ra2" path="res://music/title.ogg" id="3_lqdle"]
-[ext_resource type="AudioStream" uid="uid://1ioujyhb5dl1" path="res://sounds/introSound.ogg" id="4_trvxc"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_6q1wa")
@@ -85,13 +84,11 @@ theme_override_font_sizes/font_size = 9
 text = " Press ENTER to Start
 "
 
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
+[node name="MusicAS" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lqdle")
-volume_db = -2.255
 
-[node name="Intro" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_trvxc")
-volume_db = 5.235
+[node name="IntroAS" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lqdle")
 
 [connection signal="pressed" from="MainMenu/StoryMode" to="." method="_on_story_mode_pressed"]
 [connection signal="pressed" from="MainMenu/SongSelect" to="." method="_on_song_select_pressed"]
@@ -100,4 +97,3 @@ volume_db = 5.235
 [connection signal="pressed" from="TrackList/Round1" to="." method="_on_round_1_pressed"]
 [connection signal="pressed" from="TrackList/Round2" to="." method="_on_round_2_pressed"]
 [connection signal="pressed" from="TrackList/BackToMenu" to="." method="_on_back_to_menu_pressed"]
-[connection signal="finished" from="Intro" to="." method="_on_intro_finished"]

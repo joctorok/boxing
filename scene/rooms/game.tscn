@@ -110,21 +110,17 @@ metadata/_edit_group_ = true
 
 [node name="Cues" type="Node" parent="."]
 
-[node name="Hai" type="AudioStreamPlayer2D" parent="Cues"]
+[node name="HaiAS" type="AudioStreamPlayer" parent="Cues"]
 stream = ExtResource("14_qha2r")
-volume_db = 5.0
 
-[node name="Left" type="AudioStreamPlayer2D" parent="Cues"]
+[node name="LeftAS" type="AudioStreamPlayer" parent="Cues"]
 stream = ExtResource("15_lw7mt")
-volume_db = 5.0
 
-[node name="Right" type="AudioStreamPlayer2D" parent="Cues"]
+[node name="RIghtAS" type="AudioStreamPlayer" parent="Cues"]
 stream = ExtResource("16_1ah81")
-volume_db = 5.0
 
-[node name="Parry" type="AudioStreamPlayer2D" parent="Cues"]
+[node name="ParryAS" type="AudioStreamPlayer" parent="Cues"]
 stream = ExtResource("17_sb8dn")
-volume_db = 5.0
 
 [connection signal="changeCamScale" from="Conductor" to="." method="_on_conductor_change_cam_scale"]
 [connection signal="cueHit" from="Conductor" to="." method="_on_conductor_cue_hit"]
