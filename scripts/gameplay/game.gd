@@ -60,7 +60,7 @@ func _on_conductor_cue_hit(x, y):
 	cueTimer.autostart = false
 	cueTimer.wait_time = 0
 	cueTimer.timeout.connect(_on_cue_timer_timeout)
-	cueTimer.start(conductor.crochet + (conductor.crochet/3))
+	cueTimer.start(conductor.crochet + 0.10)
 	
 	pass # Replace with function body.
 
@@ -136,4 +136,13 @@ func _on_conductor_finished():
 			LevelManager.go_to_level(LevelManager.levelIndex)
 	else:
 		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
+	pass # Replace with function body.
+
+
+func _on_player_hit_cue(x):
+	if x == 4:
+		flash.color = Color(1, 1, 1, 0.5)
+		
+		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
+		tween3.tween_property(flash, "color", Color(1, 1, 1, 0), 0.75)
 	pass # Replace with function body.

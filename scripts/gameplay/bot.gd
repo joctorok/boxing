@@ -17,9 +17,11 @@ func _ready():
 	pass # Replace with function body.
 
 func punch_player(direction : String):
+	aniPlayer.stop()
 	aniPlayer.play("punch"+direction)
 
 func damage_self():
+	aniPlayer.stop()
 	aniPlayer.play("hit")
 
 

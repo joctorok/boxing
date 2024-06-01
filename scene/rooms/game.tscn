@@ -134,5 +134,6 @@ volume_db = 5.0
 [connection signal="timeout" from="Conductor/UppercutTimer" to="Conductor" method="_on_uppercut_timer_timeout"]
 [connection signal="hit_uc" from="GUI/UppercutHandler" to="." method="_on_uppercut_handler_hit_uc"]
 [connection signal="miss_uc" from="GUI/UppercutHandler" to="." method="_on_uppercut_handler_miss_uc"]
+[connection signal="hit_cue" from="Player" to="." method="_on_player_hit_cue"]
 [connection signal="hit_cue" from="Player" to="Bot" method="_on_player_hit_cue"]
 [connection signal="miss_cue" from="Player" to="Bot" method="_on_player_miss_cue"]

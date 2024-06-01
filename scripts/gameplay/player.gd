@@ -39,9 +39,9 @@ func _process(delta):
 
 func calculate_timing_windows():
 	if ((get_parent().conductor.songPosition < 
-	(get_parent().conductor.lastBeat + get_parent().conductor.crochet) + (get_parent().conductor.crochet/3)) and
+	(get_parent().conductor.lastBeat + get_parent().conductor.crochet) + 0.10) and
 	(get_parent().conductor.songPosition > (get_parent().conductor.lastBeat + get_parent().conductor.crochet) - 
-	(get_parent().conductor.crochet/3))):
+	0.10)):
 		canHit = true	
 	else:
 		canHit = false		
