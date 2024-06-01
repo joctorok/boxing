@@ -60,6 +60,11 @@ layout_mode = 2
 focus_mode = 0
 text = "Round 1"
 
+[node name="Round2" type="Button" parent="TrackList"]
+layout_mode = 2
+focus_mode = 0
+text = "Round 2"
+
 [node name="BackToMenu" type="Button" parent="TrackList"]
 layout_mode = 2
 focus_mode = 0
@@ -93,5 +98,6 @@ volume_db = 5.235
 [connection signal="pressed" from="MainMenu/ExitToStart" to="." method="_on_exit_to_start_pressed"]
 [connection signal="pressed" from="TrackList/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="TrackList/Round1" to="." method="_on_round_1_pressed"]
+[connection signal="pressed" from="TrackList/Round2" to="." method="_on_round_2_pressed"]
 [connection signal="pressed" from="TrackList/BackToMenu" to="." method="_on_back_to_menu_pressed"]
 [connection signal="finished" from="Intro" to="." method="_on_intro_finished"]

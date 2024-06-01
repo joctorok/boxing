@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://y0c47jdk53jr"]
+[gd_scene load_steps=18 format=3 uid="uid://y0c47jdk53jr"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/game.gd" id="1_qr4xs"]
 [ext_resource type="Texture2D" uid="uid://dc5xmjlkkwqkg" path="res://sprites/bg/placeholder.png" id="2_i1cw8"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b5a85et3hbvkt" path="res://scene/objects/player.tscn" id="14_wr018"]
 [ext_resource type="AudioStream" uid="uid://bsggkfjlxek37" path="res://sounds/cueLeft.ogg" id="15_lw7mt"]
 [ext_resource type="AudioStream" uid="uid://kb5dy28f26gb" path="res://sounds/cueRight.ogg" id="16_1ah81"]
+[ext_resource type="AudioStream" uid="uid://c35lcylyp87vl" path="res://sounds/cueParry.ogg" id="17_sb8dn"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qr4xs")
@@ -119,6 +120,10 @@ volume_db = 5.0
 
 [node name="Right" type="AudioStreamPlayer2D" parent="Cues"]
 stream = ExtResource("16_1ah81")
+volume_db = 5.0
+
+[node name="Parry" type="AudioStreamPlayer2D" parent="Cues"]
+stream = ExtResource("17_sb8dn")
 volume_db = 5.0
 
 [connection signal="changeCamScale" from="Conductor" to="." method="_on_conductor_change_cam_scale"]

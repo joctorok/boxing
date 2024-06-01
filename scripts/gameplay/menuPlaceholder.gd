@@ -108,7 +108,7 @@ func _on_back_to_menu_pressed():
 
 
 func _on_round_1_pressed():
-	LevelManager.go_to_level(3)
+	LevelManager.go_to_level(1)
 	pass # Replace with function body.
 
 
@@ -122,4 +122,9 @@ func _on_intro_finished():
 	if MenuState.state == MenuState.s.Start:
 		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		tween3.tween_property(text, "theme_override_colors/font_color:a", 1, 0.50)
+	pass # Replace with function body.
+
+
+func _on_round_2_pressed():
+	LevelManager.go_to_level(3)
 	pass # Replace with function body.

@@ -12,6 +12,8 @@ var curCueTime : float
 @onready var textbox : = $GUI/Textbox
 @onready var cueHai : = $Cues/Hai
 @onready var cueLeft : = $Cues/Left
+@onready var cueParry : = $Cues/Parry
+
 @onready var cueRight : = $Cues/Right
 
 
@@ -43,7 +45,7 @@ func _on_conductor_cue_hit(x, y):
 		3:
 			cueRight.play()
 		4:
-			cueHai.play()
+			cueParry.play()
 			var blockTimer : Timer = Timer.new()
 			add_child(blockTimer)
 			blockTimer.one_shot = true
