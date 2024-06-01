@@ -31,6 +31,7 @@ texture = ExtResource("2_i1cw8")
 [node name="Conductor" type="AudioStreamPlayer2D" parent="."]
 bus = &"Music"
 script = ExtResource("4_c8hd5")
+chart = "res://songs/round2/round2.json"
 
 [node name="UppercutTimer" type="Timer" parent="Conductor"]
 

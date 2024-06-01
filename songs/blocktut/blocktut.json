@@ -13,7 +13,9 @@
 			["Aight, kid. Can't lie, this next song's gonna be a toughie.", 2],
 			["This next bot's got a new trick up it's sleeve, so it's time you learned how to PARRY.", 10],
 			["To PARRY, press Down to BLOCK after you hear 'PUSH!', and then you'll be able to UPPERCUT your opponent!", 19],
-			["Let's practice parrying real quick to nail it down.", 29]
+			["Let's practice parrying real quick to nail it down.", 29],
+			["Alright, that's enough for today. So far so good, kid.", 66],
+			["Now with all that's said and done, give 'em HELL champ!", 72]
 		],
 		"uppercuts" : [
 		],

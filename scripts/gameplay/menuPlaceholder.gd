@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var title : = $Title
+@onready var introSound : = $Intro
 @onready var menuOptions : = $MainMenu
 @onready var trackList : = $TrackList
 
@@ -17,7 +18,15 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	LevelManager.currentLevel = ""
+	if MenuState.state == MenuState.s.Start:
+		introSound.play()
+		title.position.y = 240
+		var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween.tween_property(title, "position:y", 96, .75)
+		LevelManager.currentLevel = ""
+	else:
+		$Music.play()
+		
 	pass # Replace with function body.
 
 func _process(delta):
@@ -99,10 +108,18 @@ func _on_back_to_menu_pressed():
 
 
 func _on_round_1_pressed():
-	LevelManager.go_to_level(2)
+	LevelManager.go_to_level(3)
 	pass # Replace with function body.
 
 
 func _on_tutorial_pressed():
 	LevelManager.go_to_level(0)
+	pass # Replace with function body.
+
+
+func _on_intro_finished():
+	$Music.play()
+	if MenuState.state == MenuState.s.Start:
+		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween3.tween_property(text, "theme_override_colors/font_color:a", 1, 0.50)
 	pass # Replace with function body.

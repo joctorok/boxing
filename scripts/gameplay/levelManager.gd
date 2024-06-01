@@ -4,7 +4,8 @@ var currentLevel : String
 const levelList = [
 	"tutorial",
 	"round1",
-	"blocktut"
+	"blocktut",
+	"round2"
 ]
 var levelIndex : int
 var inStoryMode : bool

@@ -12,13 +12,8 @@ func _ready():
 	
 	aniPlayer.play("idle")
 	texture = load(botSprites[botIndex])
-	match LevelManager.levelIndex:
-		0, 2:
-			texture = load(botSprites[1])
-			hframes = 2
-		1:
-			texture = load(botSprites[0])
-			hframes = 7
+	texture = load(botSprites[0])
+	hframes = 7
 	pass # Replace with function body.
 
 func punch_player(direction : String):
