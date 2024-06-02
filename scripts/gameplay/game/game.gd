@@ -10,7 +10,6 @@ var curCueTime : float
 @onready var uppercutHandler : = $GUI/UppercutHandler
 @onready var bot : = $Bot
 @onready var textbox : = $GUI/Textbox
-@onready var strumLine : = $GUI/Strum
 
 @onready var cueHai : = $Cues/Hai
 @onready var cueLeft : = $Cues/Left
@@ -18,11 +17,17 @@ var curCueTime : float
 
 @onready var cueRight : = $Cues/Right
 
+var current_bot : String
 
 @onready var dim : = $GUI/ColorRect
 @onready var flash : = $GUI/Flash
 
 func _ready():
+	var chartData = readJSON("res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel+".json")
+	bot.texture = load("res://sprites/characters/"+chartData.song.enemy+".png")
+	var s = load("res://scene/stages/"+chartData.song.stage+".tscn")
+	var stage = s.instantiate()
+	$Stage.add_child(stage)
 	PlayerAutoloads.score = 0
 	cueIncoming = false
 
@@ -56,7 +61,6 @@ func _on_conductor_cue_hit(x, y):
 			blockTimer.wait_time = 0
 			blockTimer.start(conductor.crochet)
 			blockTimer.timeout.connect(_on_block_timer_timeout)
-	strumLine.strum_tween(conductor.crochet, cueType)
 	var cueTimer : Timer = Timer.new()
 	add_child(cueTimer)
 	cueTimer.one_shot = true
@@ -140,3 +144,7 @@ func _on_conductor_finished():
 	else:
 		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
 	pass # Replace with function body.
+
+func readJSON(path : String):
+	var json  = FileAccess.open(path, FileAccess.READ)
+	return JSON.parse_string(json.get_as_text())

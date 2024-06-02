@@ -1,4 +1,5 @@
 extends AudioStreamPlayer2D
+class_name Conductor
 
 var bpm : float
 var crochet : float

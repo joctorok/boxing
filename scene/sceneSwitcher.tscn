@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://mbbk7tn07j7n"]
 
-[ext_resource type="Script" path="res://scripts/gameplay/sceneSwitcher.gd" id="1_0jo8t"]
-[ext_resource type="Script" path="res://scripts/gameplay/ColorRect.gd" id="2_6bavx"]
-[ext_resource type="AudioStream" uid="uid://c1fyqnwitutdq" path="res://sounds/wup.mp3" id="2_751b3"]
+[ext_resource type="Script" path="res://scripts/autoloads/sceneSwitcher.gd" id="1_0jo8t"]
+[ext_resource type="Script" path="res://scripts/gui/ColorRect.gd" id="2_6bavx"]
+[ext_resource type="AudioStream" uid="uid://c1fyqnwitutdq" path="res://sounds/misc/wup.mp3" id="2_751b3"]
 
 [sub_resource type="Animation" id="Animation_r7g17"]
 length = 0.001

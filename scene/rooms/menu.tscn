@@ -100,7 +100,7 @@ region_rect = Rect2(32, 0, 32, 32)
 script = ExtResource("1_6q1wa")
 
 [node name="bg" type="Sprite2D" parent="."]
-modulate = Color(0.522949, 0.868884, 1, 1)
+modulate = Color(0.733194, 1, 0.877988, 1)
 position = Vector2(256, 192)
 texture = ExtResource("2_60vll")
 

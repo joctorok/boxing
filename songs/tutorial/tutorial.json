@@ -2,7 +2,8 @@
 	"song" : {        
 		"name" : "mixed_signals",
 		"bpm" : 90,
-		"player" : "boxer",
+		"enemy" : "buddy",
+		"stage" : "ring",
 		"cues_to_play" : [
 			[1, 33],
 			[1, 35],

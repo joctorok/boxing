@@ -17,12 +17,12 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PlayerAutoloads="*res://scripts/gameplay/playerAutoloads.gd"
+PlayerAutoloads="*res://scripts/autoloads/playerAutoloads.gd"
 SceneSwitcher="*res://scene/sceneSwitcher.tscn"
-LevelManager="*res://scripts/gameplay/levelManager.gd"
-MenuState="*res://scripts/gameplay/menuState.gd"
+LevelManager="*res://scripts/autoloads/levelManager.gd"
+MenuState="*res://scripts/autoloads/menuState.gd"
 GameSettings="*res://scripts/gameSettings.gd"
-Specs="*res://scripts/specs.tscn"
+Specs="*res://scene/gui/specs.tscn"
 
 [display]
 

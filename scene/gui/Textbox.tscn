@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Textbox.gd" id="1_ejd3j"]
 [ext_resource type="FontFile" uid="uid://brn61jh7cwgm7" path="res://Nintendo-DS-BIOS.ttf" id="2_2anjp"]
 [ext_resource type="AudioStream" uid="uid://cx8jy18073t73" path="res://sounds/textsfx.ogg" id="3_ce1xf"]
-[ext_resource type="AudioStream" uid="uid://c1fyqnwitutdq" path="res://sounds/wup.mp3" id="4_eqjnk"]
+[ext_resource type="AudioStream" uid="uid://c1fyqnwitutdq" path="res://sounds/misc/wup.mp3" id="4_eqjnk"]
 
 [node name="Textbox" type="Node2D"]
 script = ExtResource("1_ejd3j")

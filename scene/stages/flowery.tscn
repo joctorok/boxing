@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbb3c05e3d5vn"]
+
+[ext_resource type="Script" path="res://scene/stages/flowery.gd" id="1_pi4o6"]
+[ext_resource type="Texture2D" uid="uid://d1indje6k67q" path="res://sprites/bg/ring.png" id="2_v3p2d"]
+
+[node name="Ring" type="Node2D"]
+script = ExtResource("1_pi4o6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.865178, 0.890019, 1, 1)
+position = Vector2(128, 96)
+texture = ExtResource("2_v3p2d")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 50
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(500, 200)
+initial_velocity_max = 426.57
+angular_velocity_min = -146.02
+angular_velocity_max = 503.5
+scale_amount_min = 0.0
+scale_amount_max = 2.65
+color = Color(1, 0.28697, 0.755323, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 96.0
+offset_right = 192.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.251901, 0.138054, 0.456486, 1)

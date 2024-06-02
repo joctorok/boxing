@@ -2,8 +2,8 @@
 	"song" : {        
 		"name" : "Knuckle Burger",
 		"bpm" : 140,
-		"player" : "boxer",
-		"enemy" : "kb_enemy",
+		"enemy" : "tape",
+		"stage" : "ring",
 		"cues_to_play" : [
 			[1, 17],
 			[1, 19], 

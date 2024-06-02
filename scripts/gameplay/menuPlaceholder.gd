@@ -14,10 +14,18 @@ extends Node2D
 @onready var tutorial : = $TrackList/Tutorial
 @onready var round1 : = $TrackList/Round1
 
-
+var menuColor : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	menuColor = randi_range(1, 3)
+	match menuColor:
+		1:
+			$bg.modulate = Color(0.523, 0.869, 1, 1)
+		2:
+			$bg.modulate = Color(1, 0.488, 0.801, 1)
+		3:
+			$bg.modulate = Color(0.733, 1, 0.878, 1)
 	$bg/AnimationPlayer.play("scroll")
 	if MenuState.state == MenuState.s.Start:
 		introSound.play()

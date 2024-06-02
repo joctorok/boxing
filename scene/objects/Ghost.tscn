@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqrbqn2m4h6us"]
 
 [ext_resource type="Texture2D" uid="uid://ckk75x6mtk7xd" path="res://icon.svg" id="1_lm6fp"]
-[ext_resource type="Script" path="res://scripts/gameplay/GhostEffect.gd" id="2_dan3b"]
+[ext_resource type="Script" path="res://scripts/gameplay/player/GhostEffect.gd" id="2_dan3b"]
 
 [node name="Ghost" type="Sprite2D"]
 self_modulate = Color(0.627451, 1, 1, 0.329412)

@@ -1,18 +1,12 @@
 extends Sprite2D
 
-const botSprites = [
-	"res://sprites/bots/kb_enemy.png",
-	"res://sprites/bots/placeholder_bot.png"
-]
-@export var botIndex : int
+var tex : String
 @onready var aniPlayer : = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	z_index = 2
 	aniPlayer.play("idle")
-	texture = load(botSprites[botIndex])
-	texture = load(botSprites[0])
 	hframes = 7
 	pass # Replace with function body.
 
