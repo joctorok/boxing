@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbb3c05e3d5vn"]
+[gd_scene load_steps=5 format=3 uid="uid://cbb3c05e3d5vn"]
 
 [ext_resource type="Script" path="res://scene/stages/flowery.gd" id="1_pi4o6"]
 [ext_resource type="Texture2D" uid="uid://d1indje6k67q" path="res://sprites/bg/ring.png" id="2_v3p2d"]
+[ext_resource type="Texture2D" uid="uid://cgutu1wbqsj2j" path="res://particleBotanik.png" id="3_p6nhm"]
+
+[sub_resource type="Gradient" id="Gradient_wg1vi"]
+offsets = PackedFloat32Array(0, 0.537143, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Ring" type="Node2D"]
 script = ExtResource("1_pi4o6")
@@ -10,18 +15,6 @@ script = ExtResource("1_pi4o6")
 self_modulate = Color(0.865178, 0.890019, 1, 1)
 position = Vector2(128, 96)
 texture = ExtResource("2_v3p2d")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-amount = 50
-emission_shape = 1
-emission_sphere_radius = 128.0
-gravity = Vector2(500, 200)
-initial_velocity_max = 426.57
-angular_velocity_min = -146.02
-angular_velocity_max = 503.5
-scale_amount_min = 0.0
-scale_amount_max = 2.65
-color = Color(1, 0.28697, 0.755323, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 7
@@ -35,4 +28,20 @@ offset_right = 192.0
 offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0.251901, 0.138054, 0.456486, 1)
+color = Color(0.25098, 0.137255, 0.454902, 0.317647)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(88, 56)
+amount = 50
+texture = ExtResource("3_p6nhm")
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(250, 100)
+initial_velocity_min = 10.48
+initial_velocity_max = 10.48
+angular_velocity_min = -146.02
+angular_velocity_max = 503.5
+scale_amount_min = 0.0
+scale_amount_max = 0.6
+color = Color(0.550253, 0.601958, 1, 0.768627)
+color_ramp = SubResource("Gradient_wg1vi")

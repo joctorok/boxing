@@ -5,7 +5,7 @@ var tex : String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	z_index = 2
+	z_index = 1
 	aniPlayer.play("idle")
 	hframes = 7
 	pass # Replace with function body.
@@ -17,7 +17,6 @@ func punch_player(direction : String):
 func damage_self():
 	aniPlayer.stop()
 	aniPlayer.play("hit")
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func on_animation_end():
