@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsuk07sc8xr8h"]
+
+[ext_resource type="Script" path="res://scripts/Specs.gd" id="1_cp2j1"]
+[ext_resource type="FontFile" uid="uid://jxerprayhk57" path="res://NintendoDSBIOS.ttf" id="2_mnl0b"]
+
+[node name="Specs" type="CanvasLayer"]
+script = ExtResource("1_cp2j1")
+
+[node name="FrameCounter" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -96.0
+offset_bottom = -84.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_mnl0b")
+theme_override_font_sizes/font_size = 16

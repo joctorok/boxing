@@ -18,6 +18,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$bg/AnimationPlayer.play("scroll")
 	if MenuState.state == MenuState.s.Start:
 		introSound.play()
 		title.position.y = 240
@@ -44,12 +45,13 @@ func _process(delta):
 
 func set_song_select():
 	if trackList.position.y == 192:
+		$Sidebar.position.x = 144
 		menuOptions.position.x = 150
 		var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-		tween.tween_property(menuOptions, "position:y", -104, 0.50)
+		tween.tween_property(menuOptions, "position:y", -120, 0.50)
 		title.position.x = 64
 		var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-		tween2.tween_property(trackList, "position:y", 40, 0.50)
+		tween2.tween_property(trackList, "position:y", 24, 0.50)
 		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		tween3.tween_property(text, "theme_override_colors/font_color:a", 0, 0.50)
 	LevelManager.inStoryMode = false
@@ -67,6 +69,10 @@ func set_menu():
 		tween2.tween_property(title, "position:x", 64, 0.50)
 		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		tween3.tween_property(text, "theme_override_colors/font_color:a", 0, 0.50)
+		var tween4 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween4.tween_property(text, "theme_override_colors/font_outline_color:a", 0, 0.50)
+		var tween5 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween5.tween_property($Sidebar, "position:x", 144, 0.50)
 	storyMode.disabled = false
 	songSelect.disabled = false
 	exit.disabled = false
@@ -84,6 +90,10 @@ func _on_exit_to_start_pressed():
 	exit.disabled = false
 	var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween3.tween_property(text, "theme_override_colors/font_color:a", 1, 0.50)
+	var tween4 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween4.tween_property(text, "theme_override_colors/font_outline_color:a", 1, 0.50)
+	var tween5 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween5.tween_property($Sidebar, "position:x", 264, 0.50)
 	pass # Replace with function body.
 
 
@@ -122,6 +132,8 @@ func _on_intro_finished():
 	if MenuState.state == MenuState.s.Start:
 		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		tween3.tween_property(text, "theme_override_colors/font_color:a", 1, 0.50)
+		var tween4 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween4.tween_property(text, "theme_override_colors/font_outline_color:a", 1, 0.50)
 	pass # Replace with function body.
 
 

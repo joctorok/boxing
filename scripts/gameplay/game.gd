@@ -10,6 +10,8 @@ var curCueTime : float
 @onready var uppercutHandler : = $GUI/UppercutHandler
 @onready var bot : = $Bot
 @onready var textbox : = $GUI/Textbox
+@onready var strumLine : = $GUI/Strum
+
 @onready var cueHai : = $Cues/Hai
 @onready var cueLeft : = $Cues/Left
 @onready var cueParry : = $Cues/Parry
@@ -25,6 +27,7 @@ func _ready():
 	cueIncoming = false
 
 func _process(delta):
+	print(Engine.get_frames_per_second())
 	$GUI/Score.text = "Score: " + str(PlayerAutoloads.score)
 	if Input.is_action_just_pressed("gm_quit"):
 		conductor.stop()
@@ -53,7 +56,7 @@ func _on_conductor_cue_hit(x, y):
 			blockTimer.wait_time = 0
 			blockTimer.start(conductor.crochet)
 			blockTimer.timeout.connect(_on_block_timer_timeout)
-			
+	strumLine.strum_tween(conductor.crochet, cueType)
 	var cueTimer : Timer = Timer.new()
 	add_child(cueTimer)
 	cueTimer.one_shot = true
@@ -136,13 +139,4 @@ func _on_conductor_finished():
 			LevelManager.go_to_level(LevelManager.levelIndex)
 	else:
 		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
-	pass # Replace with function body.
-
-
-func _on_player_hit_cue(x):
-	if x == 4:
-		flash.color = Color(1, 1, 1, 0.5)
-		
-		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
-		tween3.tween_property(flash, "color", Color(1, 1, 1, 0), 0.75)
 	pass # Replace with function body.

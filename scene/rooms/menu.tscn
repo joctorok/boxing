@@ -1,12 +1,119 @@
-[gd_scene load_steps=5 format=3 uid="uid://boj3lrqyfw7jb"]
+[gd_scene load_steps=19 format=3 uid="uid://boj3lrqyfw7jb"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/menuPlaceholder.gd" id="1_6q1wa"]
 [ext_resource type="Texture2D" uid="uid://oajv51fduw5l" path="res://titleLogo.png" id="2_1oyo4"]
+[ext_resource type="Texture2D" uid="uid://dng5q0swslba7" path="res://sprites/bg/grid_bg.png" id="2_60vll"]
+[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://Spaceport_2006.otf" id="3_2thrd"]
 [ext_resource type="AudioStream" uid="uid://21chdsid6ra2" path="res://music/title.ogg" id="3_lqdle"]
+[ext_resource type="FontFile" uid="uid://brn61jh7cwgm7" path="res://Nintendo-DS-BIOS.ttf" id="4_2j6ti"]
+[ext_resource type="Texture2D" uid="uid://c4ysug1aaqjg5" path="res://button_theme.png" id="4_mmdli"]
 [ext_resource type="AudioStream" uid="uid://1ioujyhb5dl1" path="res://sounds/introSound.ogg" id="4_trvxc"]
+
+[sub_resource type="Animation" id="Animation_7qxju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(256, 192)]
+}
+
+[sub_resource type="Animation" id="Animation_nj36i"]
+resource_name = "scroll"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(256, 192), Vector2(240, 176)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ne0qx"]
+_data = {
+"RESET": SubResource("Animation_7qxju"),
+"scroll": SubResource("Animation_nj36i")
+}
+
+[sub_resource type="Theme" id="Theme_y8i7b"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rbjfs"]
+texture = ExtResource("4_mmdli")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 5.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_elixx"]
+texture = ExtResource("4_mmdli")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 5.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oyrkc"]
+texture = ExtResource("4_mmdli")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 5.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kghu6"]
+texture = ExtResource("4_mmdli")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 5.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_epe4a"]
+texture = ExtResource("4_mmdli")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 5.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cfjre"]
+texture = ExtResource("4_mmdli")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 5.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(32, 0, 32, 32)
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_6q1wa")
+
+[node name="bg" type="Sprite2D" parent="."]
+modulate = Color(0.522949, 0.868884, 1, 1)
+position = Vector2(256, 192)
+texture = ExtResource("2_60vll")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="bg"]
+libraries = {
+"": SubResource("AnimationLibrary_ne0qx")
+}
+
+[node name="Sidebar" type="ColorRect" parent="."]
+offset_left = 264.0
+offset_right = 376.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 0.631373)
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
 offset_left = 256.0
@@ -17,23 +124,42 @@ offset_bottom = 141.0
 [node name="Label" type="Label" parent="MainMenu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_2thrd")
 text = "Main Menu"
 horizontal_alignment = 1
 
 [node name="StoryMode" type="Button" parent="MainMenu"]
 layout_mode = 2
 focus_mode = 0
+theme = SubResource("Theme_y8i7b")
+theme_override_fonts/font = ExtResource("3_2thrd")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_rbjfs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_elixx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_oyrkc")
 text = "Story Mode"
 
 [node name="SongSelect" type="Button" parent="MainMenu"]
 layout_mode = 2
 focus_mode = 0
+theme = SubResource("Theme_y8i7b")
+theme_override_fonts/font = ExtResource("3_2thrd")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_rbjfs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_elixx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_oyrkc")
 text = "Song Select
 "
 
 [node name="ExitToStart" type="Button" parent="MainMenu"]
 layout_mode = 2
 focus_mode = 0
+theme = SubResource("Theme_y8i7b")
+theme_override_fonts/font = ExtResource("3_2thrd")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_rbjfs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_elixx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_oyrkc")
 action_mode = 0
 text = "Back
 "
@@ -47,27 +173,49 @@ offset_bottom = 293.0
 [node name="Label" type="Label" parent="TrackList"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_2thrd")
+theme_override_font_sizes/font_size = 14
 text = "Song Select"
 horizontal_alignment = 1
 
 [node name="Tutorial" type="Button" parent="TrackList"]
 layout_mode = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("3_2thrd")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_kghu6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_epe4a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cfjre")
 text = "Tutorial "
 
 [node name="Round1" type="Button" parent="TrackList"]
 layout_mode = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("3_2thrd")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_kghu6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_epe4a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cfjre")
 text = "Round 1"
 
 [node name="Round2" type="Button" parent="TrackList"]
 layout_mode = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("3_2thrd")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_kghu6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_epe4a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cfjre")
 text = "Round 2"
 
 [node name="BackToMenu" type="Button" parent="TrackList"]
 layout_mode = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("3_2thrd")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_kghu6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_epe4a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cfjre")
 text = "Back
 "
 
@@ -76,12 +224,15 @@ position = Vector2(128, 96)
 texture = ExtResource("2_1oyo4")
 
 [node name="Label" type="Label" parent="Title"]
-offset_left = -48.0
-offset_top = 28.0
-offset_right = 114.0
-offset_bottom = 51.0
+offset_left = -49.0
+offset_top = 32.0
+offset_right = 49.0
+offset_bottom = 56.0
 theme_override_colors/font_color = Color(1, 1, 1, 0)
-theme_override_font_sizes/font_size = 9
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_2j6ti")
+theme_override_font_sizes/font_size = 15
 text = " Press ENTER to Start
 "
 
@@ -92,6 +243,17 @@ volume_db = -2.255
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_trvxc")
 volume_db = 5.235
+
+[node name="Label" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 176.0
+offset_right = 116.0
+offset_bottom = 199.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_2j6ti")
+theme_override_font_sizes/font_size = 15
+text = "BOXIN' GLOVERS - SAGE 2024"
 
 [connection signal="pressed" from="MainMenu/StoryMode" to="." method="_on_story_mode_pressed"]
 [connection signal="pressed" from="MainMenu/SongSelect" to="." method="_on_song_select_pressed"]
