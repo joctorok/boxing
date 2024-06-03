@@ -22,7 +22,18 @@ var current_bot : String
 @onready var dim : = $GUI/ColorRect
 @onready var flash : = $GUI/Flash
 
+var canSkip : bool
+
 func _ready():
+	canSkip = false
+	if LevelManager.inTutorial:
+		var timeToSkip = Timer.new()
+		add_child(timeToSkip)
+		timeToSkip.one_shot = true
+		timeToSkip.autostart = false
+		timeToSkip.wait_time = 0
+		timeToSkip.timeout.connect(_on_skip_timer_timeout)
+		timeToSkip.start(conductor.crochet)
 	var chartData = readJSON("res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel+".json")
 	bot.texture = load("res://sprites/characters/"+chartData.song.enemy+".png")
 	var s = load("res://scene/stages/"+chartData.song.stage+".tscn")
@@ -32,13 +43,14 @@ func _ready():
 	cueIncoming = false
 
 func _process(delta):
-	print(Engine.get_frames_per_second())
 	$GUI/Score.text = "Score: " + str(PlayerAutoloads.score)
 	if Input.is_action_just_pressed("gm_quit"):
 		conductor.stop()
 		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
 	if PlayerAutoloads.healthPoints < 0:
 		get_tree().change_scene_to_file("res://scene/rooms/gameover.tscn")
+	if canSkip && Input.is_action_just_pressed('gm_skip'):
+		LevelManager.go_to_level(LevelManager.levelIndex + 1)
 	pass
 
 func _on_conductor_cue_hit(x, y):
@@ -134,13 +146,17 @@ func _on_block_timer_timeout():
 	conductor.ucTimer.start(3 * conductor.crochet)
 	uppercut_create(3 * conductor.crochet)
 
+func _on_skip_timer_timeout():
+	canSkip = true
+	$GUI/SkipText.text = "Press SHIFT to skip tutorial."
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property($GUI/SkipText, "theme_override_colors/font_color:a", 1, 0.50)
+	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween2.tween_property($GUI/SkipText, "theme_override_colors/font_outline_color:a", 1, 0.50)
+	
 func _on_conductor_finished():
-	if LevelManager.inStoryMode:
-		if LevelManager.levelIndex == (len(LevelManager.levelList) - 1):
-			SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
-		else:
-			LevelManager.levelIndex += 1
-			LevelManager.go_to_level(LevelManager.levelIndex)
+	if LevelManager.inTutorial:
+		LevelManager.go_to_level(LevelManager.levelIndex + 1)
 	else:
 		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
 	pass # Replace with function body.

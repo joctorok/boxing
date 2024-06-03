@@ -42,7 +42,6 @@ func _ready():
 func _process(delta):
 	match MenuState.state:
 		MenuState.s.Start:
-			storyMode.disabled = true
 			songSelect.disabled = true
 			exit.disabled = true
 			if Input.is_action_just_pressed("ui_accept"):
@@ -63,8 +62,6 @@ func set_song_select():
 		tween2.tween_property(trackList, "position:y", 24, 0.50)
 		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		tween3.tween_property(text, "theme_override_colors/font_color:a", 0, 0.50)
-	LevelManager.inStoryMode = false
-	storyMode.disabled = true
 	songSelect.disabled = true
 	exit.disabled = true
 	tutorial.disabled = false
@@ -82,7 +79,6 @@ func set_menu():
 		tween4.tween_property(text, "theme_override_colors/font_outline_color:a", 0, 0.50)
 		var tween5 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		tween5.tween_property($Sidebar, "position:x", 144, 0.50)
-	storyMode.disabled = false
 	songSelect.disabled = false
 	exit.disabled = false
 	tutorial.disabled = true
@@ -94,7 +90,6 @@ func _on_exit_to_start_pressed():
 	tween.tween_property(menuOptions, "position:x", 256, 0.50)
 	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween2.tween_property(title, "position:x", 128, 0.50)
-	storyMode.disabled = false
 	songSelect.disabled = false
 	exit.disabled = false
 	var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
@@ -105,17 +100,9 @@ func _on_exit_to_start_pressed():
 	tween5.tween_property($Sidebar, "position:x", 264, 0.50)
 	pass # Replace with function body.
 
-
-func _on_story_mode_pressed():
-	LevelManager.inStoryMode = true
-	LevelManager.go_to_level(0)
-	pass # Replace with function body.
-
-
 func _on_song_select_pressed():
 	MenuState.state = MenuState.s.SongSelect
 	pass # Replace with function body.
-
 
 func _on_back_to_menu_pressed():
 	MenuState.state = MenuState.s.Menu
@@ -125,16 +112,13 @@ func _on_back_to_menu_pressed():
 	tween2.tween_property(trackList, "position:y", 192, 0.50)
 	pass # Replace with function body.
 
-
 func _on_round_1_pressed():
 	LevelManager.go_to_level(1)
 	pass # Replace with function body.
 
-
 func _on_tutorial_pressed():
 	LevelManager.go_to_level(0)
 	pass # Replace with function body.
-
 
 func _on_intro_finished():
 	if $Music.playing == false:
@@ -146,7 +130,6 @@ func _on_intro_finished():
 		tween4.tween_property(text, "theme_override_colors/font_outline_color:a", 1, 0.50)
 	pass # Replace with function body.
 
-
 func _on_round_2_pressed():
-	LevelManager.go_to_level(3)
+	LevelManager.go_to_level(2)
 	pass # Replace with function body.

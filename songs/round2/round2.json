@@ -3,7 +3,7 @@
 		"name" : "botanik",
 		"bpm" : 180,
 		"player" : "boxer",
-		"enemy" : "tape",
+		"enemy" : "buddy",
 		"stage" : "flowery", 
 		"cues_to_play" : [
 			[2, 33],

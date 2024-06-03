@@ -12,7 +12,7 @@ func show_textbox():
 	$BoxSFX.play(0.028)
 	$ColorRect.size.y = 0
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property($ColorRect, "size:y", 60, 0.25)
+	tween.tween_property($ColorRect, "size:y", 75, 0.25)
 
 
 func show_text():

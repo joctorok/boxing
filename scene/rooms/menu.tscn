@@ -128,17 +128,6 @@ theme_override_fonts/font = ExtResource("3_2thrd")
 text = "Main Menu"
 horizontal_alignment = 1
 
-[node name="StoryMode" type="Button" parent="MainMenu"]
-layout_mode = 2
-focus_mode = 0
-theme = SubResource("Theme_y8i7b")
-theme_override_fonts/font = ExtResource("3_2thrd")
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxTexture_rbjfs")
-theme_override_styles/hover = SubResource("StyleBoxTexture_elixx")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_oyrkc")
-text = "Story Mode"
-
 [node name="SongSelect" type="Button" parent="MainMenu"]
 layout_mode = 2
 focus_mode = 0
@@ -255,7 +244,6 @@ theme_override_fonts/font = ExtResource("4_2j6ti")
 theme_override_font_sizes/font_size = 15
 text = "BOXIN' GLOVERS - SAGE 2024"
 
-[connection signal="pressed" from="MainMenu/StoryMode" to="." method="_on_story_mode_pressed"]
 [connection signal="pressed" from="MainMenu/SongSelect" to="." method="_on_song_select_pressed"]
 [connection signal="pressed" from="MainMenu/ExitToStart" to="." method="_on_exit_to_start_pressed"]
 [connection signal="pressed" from="TrackList/Tutorial" to="." method="_on_tutorial_pressed"]
