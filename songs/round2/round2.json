@@ -76,7 +76,9 @@
 			[1, 187]
 		],
 		"text" : [
+
 			["Chart is VERY unfinished, just give it some time.", 2],
+			["", 33],
 			["Press ESC to return to the title screen. Song's done (for now), pack ya bags and get outta here.", 194]
 		],
 		"uppercuts" : [

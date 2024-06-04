@@ -24,7 +24,7 @@ func _ready():
 	#pass
 
 func _process(delta):
-	songPosition = get_playback_position() + AudioServer.get_time_since_last_mix() 
+	songPosition = get_playback_position() +  AudioServer.get_time_since_last_mix() 
 	songPosition -= AudioServer.get_output_latency()
 	songPositionInBeats = round(songPosition/crochet) + 1	
 	beatProcess()
@@ -36,6 +36,7 @@ func beatProcess():
 	if songPosition > lastBeat + crochet:
 		for cue in chartData.song.cues_to_play:
 			if (songPositionInBeats) == cue[1]:
+				print(cue)
 				cueHit.emit(cue[0], cue[1])
 		if "cam_control" in chartData.song:
 			for camData in chartData.song.cam_control:

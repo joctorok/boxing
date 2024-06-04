@@ -36,31 +36,17 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(3.1285e-07, 0.36401, 0.357151, 0.317647)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer"]
-position = Vector2(24, -24)
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(88, 0)
 amount = 50
 emission_shape = 1
 emission_sphere_radius = 128.0
-gravity = Vector2(250, 100)
+gravity = Vector2(50, 100)
 initial_velocity_min = 10.48
 initial_velocity_max = 10.48
 angular_velocity_min = -146.02
 angular_velocity_max = 503.5
 scale_amount_min = 0.0
-scale_amount_max = 4.02
+scale_amount_max = 2.0
 color = Color(1, 1, 1, 0.768627)
 color_ramp = SubResource("Gradient_uupkl")
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(18.2857, 2.52632)
-scale = Vector2(1.28571, 1.15789)
-color = Color(1, 1, 1, 0.388235)
-polygon = PackedVector2Array(0, 0, 48, 80.7273, -14.2222, 163.636, -64, -16)
-
-[node name="Polygon2D" type="Polygon2D" parent="Polygon2D"]
-position = Vector2(172.444, -29.8182)
-scale = Vector2(1.28571, 1.15789)
-color = Color(1, 1, 1, 0.388235)
-polygon = PackedVector2Array(14.5185, 11.9339, -33.8766, 95.4711, 14.5185, 173.041, 62.9136, 17.9008)

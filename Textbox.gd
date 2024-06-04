@@ -26,7 +26,7 @@ func show_text():
 func hide_text():
 	$Timer.stop()
 	$Label.text = ""
-	var tween = get_tree().create_tween()
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property($ColorRect, "size:y", 0, 0.5)
 
 func _on_timer_timeout():
