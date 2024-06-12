@@ -231,7 +231,7 @@ volume_db = -2.255
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_trvxc")
-volume_db = 5.235
+volume_db = 2.424
 
 [node name="Label" type="Label" parent="."]
 offset_left = 8.0

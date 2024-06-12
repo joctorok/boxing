@@ -1,6 +1,7 @@
 {
 	"song" : {        
 		"name" : "Knuckle Burger",
+		"artist" : "joctorok",
 		"bpm" : 140,
 		"enemy" : "tape",
 		"stage" : "ring",

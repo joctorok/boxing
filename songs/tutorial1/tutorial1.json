@@ -1,6 +1,7 @@
 {
 	"song" : {        
-		"name" : "mixed_signals",
+		"name" : "Mixed Signals",
+		"artist" : "joctorok",
 		"bpm" : 90,
 		"enemy" : "buddy",
 		"stage" : "ring",

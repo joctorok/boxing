@@ -25,6 +25,7 @@ var current_bot : String
 var canSkip : bool
 
 func _ready():
+	PlayerAutoloads.missCount = 0
 	canSkip = false
 	if LevelManager.inTutorial:
 		var timeToSkip = Timer.new()
@@ -35,6 +36,21 @@ func _ready():
 		timeToSkip.timeout.connect(_on_skip_timer_timeout)
 		timeToSkip.start(conductor.crochet)
 	var chartData = readJSON("res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel+".json")
+	if chartData.song.has("artist"):
+		$GUI/SongName.text = "Song: " + chartData.song.name + "\n" + "by " + chartData.song.artist
+		var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property($GUI/SongName, "position:x", 5, 0.5).set_ease(Tween.EASE_OUT)
+		var timer = Timer.new()
+		add_child(timer)
+		timer.one_shot = true
+		timer.autostart = false
+		timer.wait_time = 0
+		timer.timeout.connect(_hide_song_info)
+		timer.start(5)
+	var cues : Array = chartData.song.cues_to_play
+	var uc : Array = chartData.song.uppercuts
+	PlayerAutoloads.maxMisses = len(cues) + len(uc)
+	print(PlayerAutoloads.maxMisses)
 	bot.texture = load("res://sprites/characters/"+chartData.song.enemy+".png")
 	var s = load("res://scene/stages/"+chartData.song.stage+".tscn")
 	var stage = s.instantiate()
@@ -46,7 +62,7 @@ func _process(delta):
 	$GUI/Score.text = "Score: " + str(PlayerAutoloads.score)
 	if Input.is_action_just_pressed("gm_quit"):
 		conductor.stop()
-		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
+		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn", 0)
 	if PlayerAutoloads.healthPoints < 0:
 		get_tree().change_scene_to_file("res://scene/rooms/gameover.tscn")
 	if canSkip && Input.is_action_just_pressed('gm_skip'):
@@ -155,12 +171,27 @@ func _on_skip_timer_timeout():
 	tween2.tween_property($GUI/SkipText, "theme_override_colors/font_outline_color:a", 1, 0.50)
 	
 func _on_conductor_finished():
-	if LevelManager.inTutorial:
-		LevelManager.go_to_level(LevelManager.levelIndex + 1)
-	else:
-		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
+	if not LevelManager.inTutorial:
+		calculateRating()
+		SceneSwitcher.start_transition("res://scene/rooms/results.tscn", 1)
 	pass # Replace with function body.
 
 func readJSON(path : String):
 	var json  = FileAccess.open(path, FileAccess.READ)
 	return JSON.parse_string(json.get_as_text())
+
+func calculateRating():
+	PlayerAutoloads.curAccuracy = 1 - PlayerAutoloads.missCount/PlayerAutoloads.maxMisses
+	if PlayerAutoloads.curAccuracy == 1:
+		PlayerAutoloads.curRating = "demon_eyes"
+	elif PlayerAutoloads.curAccuracy >= 0.60:
+		PlayerAutoloads.curRating = "boxin"
+	else:
+		PlayerAutoloads.curRating = "okay"
+	print(PlayerAutoloads.curRating)
+	
+func _hide_song_info():
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($GUI/SongName, "position:x", -40, 0.5).set_ease(Tween.EASE_IN)
+	await tween.finished
+	$GUI/SongName.hide()

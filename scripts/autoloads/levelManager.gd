@@ -17,4 +17,4 @@ func go_to_level(index):
 		inTutorial = true
 	else:
 		inTutorial = false
-	SceneSwitcher.start_transition("res://scene/rooms/game.tscn")
+	SceneSwitcher.start_transition("res://scene/rooms/game.tscn", 0)

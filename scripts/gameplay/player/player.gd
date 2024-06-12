@@ -100,7 +100,7 @@ func player_block():
 	player_animator("block", sfxBlock)
 	if PlayerAutoloads.healthPoints < PlayerAutoloads.maxHealthPoints:
 		PlayerAutoloads.healthPoints += 2
-	PlayerAutoloads.score += 40
+	PlayerAutoloads.score += 20
 	pass
 
 func player_animator(animName, sfxIndex):
@@ -138,6 +138,8 @@ func player_damage(damagePoints : int):
 	player_animator("damaged", sfxHurt)
 	PlayerAutoloads.healthPoints -= damagePoints
 	PlayerAutoloads.score -= 40
+	PlayerAutoloads.missCount += 1
+	print(PlayerAutoloads.missCount)
 	pass
 
 func return_to_idle():
