@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/gameplay/menuPlaceholder.gd" id="1_6q1wa"]
 [ext_resource type="Texture2D" uid="uid://oajv51fduw5l" path="res://titleLogo.png" id="2_1oyo4"]
 [ext_resource type="Texture2D" uid="uid://dng5q0swslba7" path="res://sprites/bg/grid_bg.png" id="2_60vll"]
-[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://Spaceport_2006.otf" id="3_2thrd"]
+[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://fonts/Spaceport_2006.otf" id="3_2thrd"]
 [ext_resource type="AudioStream" uid="uid://21chdsid6ra2" path="res://music/title.ogg" id="3_lqdle"]
 [ext_resource type="FontFile" uid="uid://brn61jh7cwgm7" path="res://Nintendo-DS-BIOS.ttf" id="4_2j6ti"]
 [ext_resource type="Texture2D" uid="uid://c4ysug1aaqjg5" path="res://button_theme.png" id="4_mmdli"]

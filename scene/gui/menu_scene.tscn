@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://k81v3cb1iyy1"]
 
 [ext_resource type="Texture2D" uid="uid://dng5q0swslba7" path="res://sprites/bg/grid_bg.png" id="2_nndf6"]
-[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://Spaceport_2006.otf" id="3_4uow5"]
+[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://fonts/Spaceport_2006.otf" id="3_4uow5"]
 [ext_resource type="Texture2D" uid="uid://c4ysug1aaqjg5" path="res://button_theme.png" id="4_8dokx"]
 
 [sub_resource type="Animation" id="Animation_7qxju"]

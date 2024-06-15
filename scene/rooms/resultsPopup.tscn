@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=3 uid="uid://cjxwg5q0a48ah"]
 
-[ext_resource type="Script" path="res://resultsPopup.gd" id="1_ay23e"]
+[ext_resource type="Script" path="res://scripts/gameplay/resultsPopup.gd" id="1_ay23e"]
 [ext_resource type="Texture2D" uid="uid://cyppctugmsom1" path="res://sprites/gui/healthbar_back.png" id="2_r4diq"]
 [ext_resource type="Texture2D" uid="uid://3xmr66s3v78d" path="res://sprites/gui/healthbar_front.png" id="3_l4h0j"]
 [ext_resource type="Texture2D" uid="uid://ddwo0umvxtpwc" path="res://sprites/gui/healthbar_fill.png" id="4_os7hb"]
-[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://Spaceport_2006.otf" id="5_30l2o"]
+[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://fonts/Spaceport_2006.otf" id="5_30l2o"]
 [ext_resource type="AudioStream" uid="uid://codfoqyljpml2" path="res://sounds/misc/drumRoll.ogg" id="6_sybu4"]
 [ext_resource type="AudioStream" uid="uid://up45eeo0mdlu" path="res://sounds/misc/ping.mp3" id="7_iqrpf"]
 [ext_resource type="AudioStream" uid="uid://7ii7pbowpnrx" path="res://sounds/misc/drumHit.ogg" id="8_rspby"]

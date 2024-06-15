@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsuk07sc8xr8h"]
 
 [ext_resource type="Script" path="res://scripts/autoloads/Specs.gd" id="1_cp2j1"]
-[ext_resource type="FontFile" uid="uid://jxerprayhk57" path="res://NintendoDSBIOS.ttf" id="2_mnl0b"]
+[ext_resource type="FontFile" uid="uid://jxerprayhk57" path="res://fonts/NintendoDSBIOS.ttf" id="2_mnl0b"]
 
 [node name="Specs" type="CanvasLayer"]
 layer = 2
