@@ -25,6 +25,7 @@ var current_bot : String
 var canSkip : bool
 
 func _ready():
+	PlayerAutoloads.curAccuracy = 1
 	PlayerAutoloads.missCount = 0
 	canSkip = false
 	if LevelManager.inTutorial:
@@ -63,8 +64,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("gm_quit"):
 		conductor.stop()
 		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn", 0)
-	if PlayerAutoloads.healthPoints < 0:
-		get_tree().change_scene_to_file("res://scene/rooms/gameover.tscn")
 	if canSkip && Input.is_action_just_pressed('gm_skip'):
 		LevelManager.go_to_level(LevelManager.levelIndex + 1)
 	pass
@@ -171,10 +170,18 @@ func _on_skip_timer_timeout():
 	tween2.tween_property($GUI/SkipText, "theme_override_colors/font_outline_color:a", 1, 0.50)
 	
 func _on_conductor_finished():
-	if not LevelManager.inTutorial:
+	#if not LevelManager.inTutorial:
 		calculateRating()
-		SceneSwitcher.start_transition("res://scene/rooms/results.tscn", 1)
-	pass # Replace with function body.
+		$GUI/HealthBar.hide()
+		$GUI/Score.hide()
+		textbox.hide()
+		$GUI/Results.start_ranking(PlayerAutoloads.curAccuracy)
+		$GUI/SkipText.hide()
+		var tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
+		tween.tween_property(cam, "zoom", Vector2(1.5, 1.5), 0.75)
+#	else:
+		#LevelManager.go_to_level(LevelManager.levelIndex + 1)
+#	pass # Replace with function body.
 
 func readJSON(path : String):
 	var json  = FileAccess.open(path, FileAccess.READ)
@@ -183,11 +190,11 @@ func readJSON(path : String):
 func calculateRating():
 	PlayerAutoloads.curAccuracy = 1 - PlayerAutoloads.missCount/PlayerAutoloads.maxMisses
 	if PlayerAutoloads.curAccuracy == 1:
-		PlayerAutoloads.curRating = "demon_eyes"
-	elif PlayerAutoloads.curAccuracy >= 0.60:
-		PlayerAutoloads.curRating = "boxin"
+		PlayerAutoloads.curRank = PlayerAutoloads
+	elif PlayerAutoloads.curAccuracy >= 0.50:
+		PlayerAutoloads.curRating = "Boxin'!"
 	else:
-		PlayerAutoloads.curRating = "okay"
+		PlayerAutoloads.curRating = "OK."
 	print(PlayerAutoloads.curRating)
 	
 func _hide_song_info():
@@ -195,3 +202,9 @@ func _hide_song_info():
 	tween.tween_property($GUI/SongName, "position:x", -40, 0.5).set_ease(Tween.EASE_IN)
 	await tween.finished
 	$GUI/SongName.hide()
+
+func _on_timer_timeout():
+	if PlayerAutoloads.curRank == PlayerAutoloads.Ranks.DEMONEYES:
+		flash.color = Color(1, 1, 1, 1)
+		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
+		tween3.tween_property(flash, "color", Color(1, 1, 1, 0), 0.75)

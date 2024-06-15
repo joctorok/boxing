@@ -11,7 +11,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		LevelManager.go_to_level(LevelManager.levelIndex)
 	if Input.is_action_just_pressed("ui_cancel"):
-		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
+		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn", 1)
 	pass
 
 
@@ -23,5 +23,5 @@ func _on_animation_player_animation_finished(anim_name):
 
 
 func _on_music_finished():
-	SceneSwitcher.start_transition("res://scene/rooms/menu.tscn")
+	SceneSwitcher.start_transition("res://scene/rooms/menu.tscn", 1)
 	pass # Replace with function body.

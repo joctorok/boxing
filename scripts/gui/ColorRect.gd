@@ -3,7 +3,7 @@ extends ColorRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	z_index = 3
+	z_index = 5
 	pass # Replace with function body.
 
 

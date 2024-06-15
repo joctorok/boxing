@@ -1,0 +1,263 @@
+[gd_scene load_steps=16 format=3 uid="uid://cjxwg5q0a48ah"]
+
+[ext_resource type="Script" path="res://resultsPopup.gd" id="1_ay23e"]
+[ext_resource type="Texture2D" uid="uid://cyppctugmsom1" path="res://sprites/gui/healthbar_back.png" id="2_r4diq"]
+[ext_resource type="Texture2D" uid="uid://3xmr66s3v78d" path="res://sprites/gui/healthbar_front.png" id="3_l4h0j"]
+[ext_resource type="Texture2D" uid="uid://ddwo0umvxtpwc" path="res://sprites/gui/healthbar_fill.png" id="4_os7hb"]
+[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://Spaceport_2006.otf" id="5_30l2o"]
+[ext_resource type="AudioStream" uid="uid://codfoqyljpml2" path="res://sounds/misc/drumRoll.ogg" id="6_sybu4"]
+[ext_resource type="AudioStream" uid="uid://up45eeo0mdlu" path="res://sounds/misc/ping.mp3" id="7_iqrpf"]
+[ext_resource type="AudioStream" uid="uid://7ii7pbowpnrx" path="res://sounds/misc/drumHit.ogg" id="8_rspby"]
+[ext_resource type="AudioStream" uid="uid://bdwexasawas40" path="res://sounds/player sounds/uppercut.mp3" id="9_7g7g6"]
+[ext_resource type="AudioStream" uid="uid://cglhrsew18qcu" path="res://music/results test.ogg" id="9_rhcey"]
+[ext_resource type="FontFile" uid="uid://brn61jh7cwgm7" path="res://Nintendo-DS-BIOS.ttf" id="11_2mukj"]
+
+[sub_resource type="Animation" id="Animation_23gal"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rank:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(28, 193)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RankName:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 20)]
+}
+
+[sub_resource type="Animation" id="Animation_w28ln"]
+resource_name = "ShowRank"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RankName:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 1.9, 2.1),
+"transitions": PackedFloat32Array(4.14106, 1, 1),
+"update": 0,
+"values": [Vector2(20, 20), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rank:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.225313, 0.225313),
+"update": 0,
+"values": [Vector2(28, 193), Vector2(28, 49)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RankName:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_7g7g6")
+}],
+"times": PackedFloat32Array(1.8)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_skip"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sb7rc"]
+_data = {
+"RESET": SubResource("Animation_23gal"),
+"ShowRank": SubResource("Animation_w28ln")
+}
+
+[sub_resource type="Gradient" id="Gradient_o042b"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Results" type="CanvasLayer"]
+script = ExtResource("1_ay23e")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = 16.0
+offset_top = 168.0
+offset_right = 240.0
+offset_bottom = 184.0
+max_value = 1.0
+step = 0.01
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("2_r4diq")
+texture_over = ExtResource("3_l4h0j")
+texture_progress = ExtResource("4_os7hb")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 48.0
+offset_right = 84.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(84, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_30l2o")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="DrumRoll" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_sybu4")
+volume_db = 7.495
+
+[node name="Ping" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_iqrpf")
+
+[node name="DrumHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_rspby")
+volume_db = 4.685
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Dim" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 0)
+
+[node name="RankName" type="Label" parent="."]
+visible = false
+offset_left = 27.0
+offset_top = 72.0
+offset_right = 227.0
+offset_bottom = 95.0
+scale = Vector2(20, 20)
+pivot_offset = Vector2(100, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5_30l2o")
+text = "Demon Eyes"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sb7rc")
+}
+
+[node name="Rank" type="Label" parent="."]
+offset_left = 28.0
+offset_top = 193.0
+offset_right = 228.0
+offset_bottom = 216.0
+pivot_offset = Vector2(100, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_30l2o")
+text = "Rank:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_rhcey")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(128, 64)
+emitting = false
+amount = 50
+lifetime = 3.1
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 83.48
+direction = Vector2(0, -2)
+gravity = Vector2(0, 6)
+initial_velocity_min = 51.67
+initial_velocity_max = 311.11
+angular_velocity_min = 25.17
+angular_velocity_max = 720.0
+color_ramp = SubResource("Gradient_o042b")
+
+[node name="Text" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 96.0
+offset_right = 178.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("11_2mukj")
+theme_override_font_sizes/font_size = 15
+text = " Press ENTER to Return to Menu
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="changed" from="HealthBar" to="." method="_on_health_bar_changed"]
+[connection signal="value_changed" from="HealthBar" to="." method="_on_health_bar_value_changed"]

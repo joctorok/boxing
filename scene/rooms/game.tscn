@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://y0c47jdk53jr"]
+[gd_scene load_steps=19 format=3 uid="uid://y0c47jdk53jr"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/game/game.gd" id="1_qr4xs"]
 [ext_resource type="PackedScene" uid="uid://br5cms0su4vur" path="res://scene/objects/bot.tscn" id="3_rjipp"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://3xmr66s3v78d" path="res://sprites/gui/healthbar_front.png" id="9_uahyc"]
 [ext_resource type="Texture2D" uid="uid://ddwo0umvxtpwc" path="res://sprites/gui/healthbar_fill.png" id="10_ott2q"]
 [ext_resource type="Script" path="res://scripts/gui/HealthBar.gd" id="11_2hhkl"]
+[ext_resource type="PackedScene" uid="uid://cjxwg5q0a48ah" path="res://resultsPopup.tscn" id="12_6qbkd"]
 [ext_resource type="FontFile" uid="uid://jxerprayhk57" path="res://NintendoDSBIOS.ttf" id="13_4ow1o"]
 [ext_resource type="AudioStream" uid="uid://cvi7pploxv3k3" path="res://sounds/cues/cuePunch.ogg" id="14_qha2r"]
 [ext_resource type="PackedScene" uid="uid://b5a85et3hbvkt" path="res://scene/objects/player.tscn" id="14_wr018"]
@@ -124,6 +125,8 @@ theme_override_fonts/font = ExtResource("13_4ow1o")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_ixaoc")
 
+[node name="Results" parent="GUI" instance=ExtResource("12_6qbkd")]
+
 [node name="Player" parent="." instance=ExtResource("14_wr018")]
 metadata/_edit_group_ = true
 
@@ -169,6 +172,12 @@ volume_db = 5.0
 [connection signal="timeout" from="Conductor/UppercutTimer" to="Conductor" method="_on_uppercut_timer_timeout"]
 [connection signal="hit_uc" from="GUI/UppercutHandler" to="." method="_on_uppercut_handler_hit_uc"]
 [connection signal="miss_uc" from="GUI/UppercutHandler" to="." method="_on_uppercut_handler_miss_uc"]
+[connection signal="play_anim" from="GUI/Results" to="." method="_on_results_play_anim"]
+[connection signal="play_anim" from="GUI/Results" to="GUI/Results" method="_on_play_anim"]
+[connection signal="play_anim" from="GUI/Results" to="Player" method="_on_results_play_anim"]
+[connection signal="timeout" from="GUI/Results/Timer" to="." method="_on_timer_timeout"]
 [connection signal="hit_cue" from="Player" to="." method="_on_player_hit_cue"]
 [connection signal="hit_cue" from="Player" to="Bot" method="_on_player_hit_cue"]
 [connection signal="miss_cue" from="Player" to="Bot" method="_on_player_miss_cue"]
+
+[editable path="GUI/Results"]

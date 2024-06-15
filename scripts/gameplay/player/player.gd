@@ -167,3 +167,11 @@ func ghost_instance():
 func _on_ghost_timer_timeout():
 	ghost_instance()
 	pass # Replace with function body.
+
+func _on_results_play_anim():
+	match PlayerAutoloads.curRank:
+		PlayerAutoloads.Ranks.OKAY:
+			player_animator("damaged", sfxHurt)
+		PlayerAutoloads.Ranks.DEMONEYES:
+			player_animator("block", sfxBlock)
+	pass # Replace with function body.
