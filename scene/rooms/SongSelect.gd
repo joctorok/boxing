@@ -25,6 +25,8 @@ func _ready():
 		if FileAccess.file_exists("user://" + song + ".json"):
 			var save = readJSON("user://" + song + ".json")
 			button.tex = save.data.rank
+		else:
+			button.tex = 4
 		button.position.y = LevelManager.levelList.find(song) * 60
 		button.pressed.connect(switch_to_level.bind(button.get_index(false)))
 	pass # Replace with function body.
