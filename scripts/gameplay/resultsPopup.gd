@@ -24,7 +24,7 @@ func start_ranking(amt):
 func _process(delta):
 	if canReturn:
 		if Input.is_action_just_pressed("ui_accept"):
-			SceneSwitcher.start_transition("res://scene/rooms/menu.tscn", 0)
+			SceneSwitcher.start_transition("res://scene/rooms/SongSelect.tscn", 1)
 	$Label.text = str($HealthBar.value * 100) + "%"
 
 func start_bar(amt):

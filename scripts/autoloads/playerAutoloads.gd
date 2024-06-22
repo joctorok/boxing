@@ -8,7 +8,7 @@ var maxMisses : float
 var curRating : String
 
 enum Ranks {
-	TRYAGAIN,
+	MEH,
 	OKAY,
 	BOXIN,
 	DEMONEYES
@@ -17,7 +17,6 @@ var curAccuracy : float
 var curRank
 
 func _process(delta):
-	print(curRank)
 	curAccuracy = 1 - (missCount/maxMisses)
 	if curAccuracy == 1:
 		curRank = Ranks.DEMONEYES

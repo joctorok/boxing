@@ -17,6 +17,8 @@ signal changeCamScale(x, y, z)
 signal uppercutHit(x, y)
 signal textDisplay(x, y)
 
+var pastCues : Array
+
 @export var chart : String
 
 func _ready():
@@ -33,11 +35,14 @@ func _process(delta):
 
 func beatProcess():
 	var chartData = readJSON("res://songs/"+LevelManager.currentLevel+"/" + LevelManager.currentLevel+".json")
+	for cue in chartData.song.cues_to_play:
+			if not pastCues.has(cue):
+				if ((songPosition) >= ((cue[1] - 1) * crochet)):
+					print(cue)
+					pastCues.append(cue)
+					cueHit.emit(cue[0], cue[1])
+
 	if songPosition > lastBeat + crochet:
-		for cue in chartData.song.cues_to_play:
-			if (songPositionInBeats) == cue[1]:
-				print(cue)
-				cueHit.emit(cue[0], cue[1])
 		if "cam_control" in chartData.song:
 			for camData in chartData.song.cam_control:
 				if songPositionInBeats == camData[1]:
@@ -50,7 +55,7 @@ func beatProcess():
 			for uppercutData in chartData.song.uppercuts:
 				if songPositionInBeats == uppercutData[1]:
 					uppercutHit.emit(uppercutData[0], uppercutData[1])
-					ucTimer.start(uppercutData[0] * crochet)
+					ucTimer.start(uppercutData[0] * crochet)	
 		if ucTimer.time_left > 0:
 			$Ping.play(0.028)
 		emit_signal("beatHit")

@@ -5,7 +5,6 @@ extends Node2D
 @onready var menuOptions : = $MainMenu
 @onready var trackList : = $TrackList
 
-@onready var storyMode : = $MainMenu/StoryMode
 @onready var songSelect : = $MainMenu/SongSelect
 @onready var exit : = $MainMenu/ExitToStart
 @onready var text : = $Title/Label
@@ -20,7 +19,7 @@ var menuColor : int
 func _ready():
 	menuColor = randi_range(1, 3)
 	introSound.play()
-	
+	$bg/AnimationPlayer.play("scroll")
 	match menuColor:
 		1:
 			$bg.modulate = Color(0.523, 0.869, 1, 1)
@@ -28,7 +27,7 @@ func _ready():
 			$bg.modulate = Color(1, 0.488, 0.801, 1)
 		3:
 			$bg.modulate = Color(0.733, 1, 0.878, 1)
-	$bg/AnimationPlayer.play("scroll")
+	
 	if MenuState.state == MenuState.s.Start:
 		title.position.y = 240
 		var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
@@ -102,7 +101,7 @@ func _on_exit_to_start_pressed():
 	pass # Replace with function body.
 
 func _on_song_select_pressed():
-	MenuState.state = MenuState.s.SongSelect
+	SceneSwitcher.start_transition("res://scene/rooms/SongSelect.tscn", 0)
 	pass # Replace with function body.
 
 func _on_back_to_menu_pressed():

@@ -23,8 +23,15 @@ var current_bot : String
 @onready var flash : = $GUI/Flash
 
 var canSkip : bool
+var canExit : bool
+
+var highestRank : int
 
 func _ready():
+	if FileAccess.file_exists("user://" + LevelManager.currentLevel + ".json"):
+		var save = readJSON("user://" + LevelManager.currentLevel + ".json")
+		highestRank = save.data.rank
+	canExit = true 
 	PlayerAutoloads.curAccuracy = 1
 	PlayerAutoloads.missCount = 0
 	canSkip = false
@@ -61,9 +68,15 @@ func _ready():
 
 func _process(delta):
 	$GUI/Score.text = "Score: " + str(PlayerAutoloads.score)
-	if Input.is_action_just_pressed("gm_quit"):
-		conductor.stop()
-		SceneSwitcher.start_transition("res://scene/rooms/menu.tscn", 0)
+	if PlayerAutoloads.healthPoints == 0:
+		get_tree().change_scene_to_file("res://scene/rooms/gameover.tscn")
+	if Input.is_action_just_pressed("gm_quit") && canExit:
+		canExit = false
+		var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+		tween2.tween_property(cam, "zoom", Vector2(0.85, 0.85), 0.75)
+		tween.tween_property(conductor, "pitch_scale", 0.5, 0.75)
+		tween.finished.connect(go_to_menu)
 	if canSkip && Input.is_action_just_pressed('gm_skip'):
 		LevelManager.go_to_level(LevelManager.levelIndex + 1)
 	pass
@@ -95,7 +108,6 @@ func _on_conductor_cue_hit(x, y):
 	cueTimer.wait_time = 0
 	cueTimer.timeout.connect(_on_cue_timer_timeout)
 	cueTimer.start(conductor.crochet + 0.10)
-	
 	pass # Replace with function body.
 
 func _on_cue_timer_timeout():
@@ -109,7 +121,6 @@ func _on_conductor_change_cam_scale(x, y, z):
 	tween.tween_property(cam, "zoom", Vector2(x, x), 0.75)
 	$Player/RemoteTransform2D.update_position = z
 	pass # Replace with function body.
-
 
 func _on_conductor_uppercut_hit(x, y):
 	player.inUppercut = true
@@ -137,7 +148,6 @@ func _on_uppercut_handler_hit_uc():
 	tween.tween_property(cam, "zoom", Vector2(1, 1), 0.75)
 	pass # Replace with function body.
 
-
 func _on_uppercut_handler_miss_uc():
 	player.player_damage(4)
 	bot.punch_player("L")
@@ -147,7 +157,6 @@ func _on_uppercut_handler_miss_uc():
 	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
 	tween2.tween_property(dim, "color", Color(Color(0, 0, 0, 0)), 0.75)
 	pass # Replace with function body.
-
 
 func _on_conductor_text_display(x, y):
 	textbox.label.text = x
@@ -168,10 +177,10 @@ func _on_skip_timer_timeout():
 	tween.tween_property($GUI/SkipText, "theme_override_colors/font_color:a", 1, 0.50)
 	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween2.tween_property($GUI/SkipText, "theme_override_colors/font_outline_color:a", 1, 0.50)
-	
+
 func _on_conductor_finished():
 	#if not LevelManager.inTutorial:
-		calculateRating()
+		saveScore()
 		$GUI/HealthBar.hide()
 		$GUI/Score.hide()
 		textbox.hide()
@@ -183,20 +192,24 @@ func _on_conductor_finished():
 		#LevelManager.go_to_level(LevelManager.levelIndex + 1)
 #	pass # Replace with function body.
 
+func saveScore():
+	var filePath : String = "user://" + LevelManager.currentLevel + ".json"
+	var save = FileAccess.open(filePath, FileAccess.WRITE)
+	var dict = {
+		"data" : {"score" : PlayerAutoloads.score,
+		"rank" : PlayerAutoloads.curRank}
+	}
+	var string = JSON.stringify(dict)
+	if PlayerAutoloads.curRank > highestRank:
+		save.store_string(string)
+		save.close()
+	print(dict)
+	return
+
 func readJSON(path : String):
 	var json  = FileAccess.open(path, FileAccess.READ)
 	return JSON.parse_string(json.get_as_text())
 
-func calculateRating():
-	PlayerAutoloads.curAccuracy = 1 - PlayerAutoloads.missCount/PlayerAutoloads.maxMisses
-	if PlayerAutoloads.curAccuracy == 1:
-		PlayerAutoloads.curRank = PlayerAutoloads
-	elif PlayerAutoloads.curAccuracy >= 0.50:
-		PlayerAutoloads.curRating = "Boxin'!"
-	else:
-		PlayerAutoloads.curRating = "OK."
-	print(PlayerAutoloads.curRating)
-	
 func _hide_song_info():
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property($GUI/SongName, "position:x", -40, 0.5).set_ease(Tween.EASE_IN)
@@ -208,3 +221,7 @@ func _on_timer_timeout():
 		flash.color = Color(1, 1, 1, 1)
 		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
 		tween3.tween_property(flash, "color", Color(1, 1, 1, 0), 0.75)
+
+func go_to_menu():
+		SceneSwitcher.start_transition("res://scene/rooms/SongSelect.tscn", 1)
+	

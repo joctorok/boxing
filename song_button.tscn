@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://decmm6ky7xijq"]
+
+[ext_resource type="Script" path="res://SongButton.gd" id="1_138vq"]
+[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://fonts/Spaceport_2006.otf" id="2_ravda"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvldm"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dk7n2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_awlh3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbw41"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_deta7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lv7d4"]
+
+[node name="SongButton" type="Node2D"]
+script = ExtResource("1_138vq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 52.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_top = -12.0
+offset_right = 152.0
+offset_bottom = 33.0
+color = Color(0.581033, 0.581033, 0.581033, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 118.0
+offset_bottom = 35.0
+mouse_filter = 2
+
+[node name="SongStuff" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="Song" type="Label" parent="Control/HBoxContainer/SongStuff"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ravda")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_nvldm")
+text = "Song ♫"
+metadata/_edit_use_anchors_ = true
+
+[node name="SongName" type="Label" parent="Control/HBoxContainer/SongStuff"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ravda")
+theme_override_font_sizes/font_size = 9
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/HBoxContainer/SongStuff/SongName"]
+position = Vector2(126, -1)
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_top = -11.0
+offset_right = 152.0
+offset_bottom = 22.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dk7n2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_awlh3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tbw41")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_deta7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lv7d4")
+
+[connection signal="mouse_entered" from="Control/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

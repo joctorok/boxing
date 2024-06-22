@@ -148,6 +148,7 @@ script = ExtResource("1_0jo8t")
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 192.0
+mouse_filter = 2
 color = Color(0, 0, 0, 0)
 script = ExtResource("2_6bavx")
 
