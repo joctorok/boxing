@@ -1,6 +1,6 @@
 extends Node2D
 
-var songButton = preload("res://song_button.tscn")
+var songButton = preload("res://scene/rooms/song_button.tscn")
 # Called when the node enters the scene tree for the first time.
 var menuOption : int
 

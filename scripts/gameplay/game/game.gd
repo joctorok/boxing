@@ -22,10 +22,20 @@ var current_bot : String
 @onready var dim : = $GUI/ColorRect
 @onready var flash : = $GUI/Flash
 
+var canHit : bool
 var canSkip : bool
 var canExit : bool
 
 var highestRank : int
+
+func calculate_timing_windows():
+	if (conductor.songPosition < 
+	(conductor.lastBeat + conductor.crochet) + 0.10) and (conductor.songPosition > 
+	(conductor.lastBeat + conductor.crochet) - 
+	0.10):
+		canHit = true	
+	else:
+		canHit = false		
 
 func _ready():
 	if FileAccess.file_exists("user://" + LevelManager.currentLevel + ".json"):
@@ -67,14 +77,14 @@ func _ready():
 	cueIncoming = false
 
 func _process(delta):
+	calculate_timing_windows()
 	$GUI/Score.text = "Score: " + str(PlayerAutoloads.score)
 	if PlayerAutoloads.healthPoints == 0:
 		get_tree().change_scene_to_file("res://scene/rooms/gameover.tscn")
 	if Input.is_action_just_pressed("gm_quit") && canExit:
 		canExit = false
 		var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-		var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-		tween2.tween_property(cam, "zoom", Vector2(0.85, 0.85), 0.75)
+		CamChange(Vector2(0.85, 0.85))
 		tween.tween_property(conductor, "pitch_scale", 0.5, 0.75)
 		tween.finished.connect(go_to_menu)
 	if canSkip && Input.is_action_just_pressed('gm_skip'):
@@ -112,51 +122,57 @@ func _on_conductor_cue_hit(x, y):
 
 func _on_cue_timer_timeout():
 	if cueIncoming == true:
-		player.player_damage(2)
+		player.Damage(2, 10)
 		player.miss_cue.emit(cueType)
 		cueIncoming = false
 
 func _on_conductor_change_cam_scale(x, y, z):
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	tween.tween_property(cam, "zoom", Vector2(x, x), 0.75)
+	CamChange(Vector2(x,x))
 	$Player/RemoteTransform2D.update_position = z
 	pass # Replace with function body.
 
 func _on_conductor_uppercut_hit(x, y):
 	player.inUppercut = true
 	uppercut_create(x*conductor.crochet)
+	
 	pass # Replace with function body.
 
 func uppercut_create(x):
 	uppercutHandler.timeToTarget = x
 	uppercutHandler.tween_marker()
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
-	tween.tween_property(cam, "zoom", Vector2(1.5, 1.5), 0.75)
-	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
-	tween2.tween_property(dim, "color", Color(Color(0, 0, 0, 0.5)), 0.75)
+	CamChange(Vector2(1.5,1.5))
+	Dim(Color(Color(0, 0, 0, 0.5)))
 
 func _on_uppercut_handler_hit_uc(): 
-	flash.color = Color(1, 1, 1, 1)
-	player.player_uppercut()
-	bot.aniPlayer.play("hit")
-	player.inUppercut = false
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
-	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
-	var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
-	tween3.tween_property(flash, "color", Color(1, 1, 1, 0), 0.75)
-	tween2.tween_property(dim, "color", Color(Color(0, 0, 0, 0)), 0.75)
-	tween.tween_property(cam, "zoom", Vector2(1, 1), 0.75)
+	player.Uppercut()
+	bot.damage_self()
+	Flash()
+	Dim(Color(Color(0, 0, 0, 0)))
+	CamChange(Vector2(1,1))
+	
 	pass # Replace with function body.
 
 func _on_uppercut_handler_miss_uc():
-	player.player_damage(4)
+	player.Damage(4, 20)
 	bot.punch_player("L")
 	player.inUppercut = false
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
-	tween.tween_property(cam, "zoom", Vector2(1, 1), 0.75)
-	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
-	tween2.tween_property(dim, "color", Color(Color(0, 0, 0, 0)), 0.75)
+	CamChange(Vector2(1,1))
+	Dim(Color(Color(0, 0, 0, 0)))
 	pass # Replace with function body.
+
+func CamChange(scale : Vector2):
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
+	tween.tween_property(cam, "zoom", scale, 0.75)
+	
+
+func Dim(color : Color):
+	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
+	tween2.tween_property(dim, "color", color, 0.75)
+
+func Flash():
+	flash.color = Color(1, 1, 1, 1)
+	var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
+	tween3.tween_property(flash, "color", Color(1, 1, 1, 0), 0.75)
 
 func _on_conductor_text_display(x, y):
 	textbox.label.text = x
@@ -186,8 +202,7 @@ func _on_conductor_finished():
 		textbox.hide()
 		$GUI/Results.start_ranking(PlayerAutoloads.curAccuracy)
 		$GUI/SkipText.hide()
-		var tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
-		tween.tween_property(cam, "zoom", Vector2(1.5, 1.5), 0.75)
+		CamChange(Vector2(1.5, 1.5))
 #	else:
 		#LevelManager.go_to_level(LevelManager.levelIndex + 1)
 #	pass # Replace with function body.
@@ -218,10 +233,23 @@ func _hide_song_info():
 
 func _on_timer_timeout():
 	if PlayerAutoloads.curRank == PlayerAutoloads.Ranks.DEMONEYES:
-		flash.color = Color(1, 1, 1, 1)
-		var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
-		tween3.tween_property(flash, "color", Color(1, 1, 1, 0), 0.75)
+		Flash()
 
 func go_to_menu():
 		SceneSwitcher.start_transition("res://scene/rooms/SongSelect.tscn", 1)
 	
+
+
+func _on_player_input_press(x):
+	if canHit && x == cueType:
+		match x:
+			1:
+				player.Hit("Punch", 20, 2)
+			2:
+				player.Hit("DodgeLeft", 20, 2)
+			3:
+				player.Hit("DodgeRight", 20, 2)
+			4:
+				player.Hit("Block", 40, 4)
+			
+	pass # Replace with function body.

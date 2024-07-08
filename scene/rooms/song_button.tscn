@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://decmm6ky7xijq"]
 
-[ext_resource type="Script" path="res://SongButton.gd" id="1_138vq"]
-[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://fonts/Spaceport_2006.otf" id="2_ravda"]
+[ext_resource type="Script" path="res://scripts/gui/SongButton.gd" id="1_ne67h"]
+[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://fonts/Spaceport_2006.otf" id="2_4m25j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvldm"]
 bg_color = Color(0, 0, 0, 1)
@@ -17,7 +17,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lv7d4"]
 
 [node name="SongButton" type="Node2D"]
-script = ExtResource("1_138vq")
+script = ExtResource("1_ne67h")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -48,7 +48,7 @@ layout_mode = 2
 [node name="Song" type="Label" parent="Control/HBoxContainer/SongStuff"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_ravda")
+theme_override_fonts/font = ExtResource("2_4m25j")
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_nvldm")
 text = "Song ♫"
@@ -57,7 +57,7 @@ metadata/_edit_use_anchors_ = true
 [node name="SongName" type="Label" parent="Control/HBoxContainer/SongStuff"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ravda")
+theme_override_fonts/font = ExtResource("2_4m25j")
 theme_override_font_sizes/font_size = 9
 metadata/_edit_use_anchors_ = true
 

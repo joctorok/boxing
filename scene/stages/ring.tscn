@@ -15,10 +15,10 @@ offset_left = -64.0
 offset_top = -40.0
 offset_right = 320.0
 offset_bottom = 224.0
-color = Color(0.407843, 0.572549, 0.654902, 1)
+color = Color(0.87451, 0.321569, 0.466667, 1)
 
 [node name="Sprite" type="Sprite2D" parent="."]
-self_modulate = Color(0.408655, 0.571777, 0.654457, 1)
+self_modulate = Color(0.87576, 0.322302, 0.466857, 1)
 position = Vector2(128, 96)
 texture = ExtResource("2_56ko0")
 

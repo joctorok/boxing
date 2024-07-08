@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqhsslsj61b5e"]
+
+[ext_resource type="Script" path="res://scripts/gui/chart_editor.gd" id="1_0yfeh"]
+[ext_resource type="Script" path="res://Cues.gd" id="2_gaxjj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3iws5"]
+size = Vector2(128, 160)
+
+[node name="chartEditor" type="Node2D"]
+script = ExtResource("1_0yfeh")
+
+[node name="ActiveArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActiveArea"]
+position = Vector2(128, 112)
+shape = SubResource("RectangleShape2D_3iws5")
+
+[node name="Cues" type="Node2D" parent="."]
+position = Vector2(64, 32)
+script = ExtResource("2_gaxjj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.545098)
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(96, 32)
+points = PackedVector2Array(0, 0, 0, 160)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2(128, 32)
+points = PackedVector2Array(0, 0, 0, 160)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D3" type="Line2D" parent="."]
+position = Vector2(160, 32)
+points = PackedVector2Array(0, 0, 0, 160)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D4" type="Line2D" parent="."]
+position = Vector2(96, 32)
+points = PackedVector2Array(-32, 32, 96, 32)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D5" type="Line2D" parent="."]
+position = Vector2(96, 64)
+points = PackedVector2Array(-32, 32, 96, 32)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D6" type="Line2D" parent="."]
+position = Vector2(96, 96)
+points = PackedVector2Array(-32, 32, 96, 32)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D7" type="Line2D" parent="."]
+position = Vector2(96, 128)
+points = PackedVector2Array(-32, 32, 96, 32)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="ChartLine" type="Line2D" parent="."]
+position = Vector2(64, 32)
+points = PackedVector2Array(0, 0, 128, 0)
+width = 6.0
+default_color = Color(0.809509, 0, 0.170178, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.203922)
+polygon = PackedVector2Array(0, 0, 256, 0, 256, 192, 192, 192, 192, 32, 64, 32, 64, 192, 0, 192)
+
+[connection signal="input_event" from="ActiveArea" to="." method="_on_active_area_input_event"]
+[connection signal="mouse_entered" from="ActiveArea" to="." method="_on_active_area_mouse_entered"]
+[connection signal="mouse_exited" from="ActiveArea" to="." method="_on_active_area_mouse_exited"]
