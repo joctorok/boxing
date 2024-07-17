@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sirofax4xo2f"
-path="res://.godot/imported/boxer.png-832020b086011cb3744236ddf357bfb7.ctex"
+path="res://.godot/imported/coil.png-ce58d57a0c577c0928f8e0477b0f4d97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/boxer.png"
-dest_files=["res://.godot/imported/boxer.png-832020b086011cb3744236ddf357bfb7.ctex"]
+source_file="res://sprites/characters/players/coil.png"
+dest_files=["res://.godot/imported/coil.png-ce58d57a0c577c0928f8e0477b0f4d97.ctex"]
 
 [params]
 

@@ -3,6 +3,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$CanvasLayer/Textbox.label.text = "It ain't over yet! Press SPACE to try again! If you're ready to throw in the towel, press ESCAPE."
 	$AnimationPlayer.play("player_death")
 	pass # Replace with function body.
 
@@ -17,8 +18,9 @@ func _process(delta):
 
 func _on_animation_player_animation_finished(anim_name):
 	$music.play()
+	
 	var tween = get_tree().create_tween()
-	tween.tween_property($CanvasLayer/Label, "visible_ratio", 1, (0.05 * len($CanvasLayer/Label.text)))	 
+	$CanvasLayer/Textbox.show_text()
 	pass # Replace with function body.
 
 

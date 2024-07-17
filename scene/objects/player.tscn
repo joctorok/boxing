@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://b5a85et3hbvkt"]
 
-[ext_resource type="Texture2D" uid="uid://sirofax4xo2f" path="res://sprites/characters/boxer.png" id="1_27sfm"]
+[ext_resource type="Texture2D" uid="uid://sirofax4xo2f" path="res://sprites/characters/players/coil.png" id="1_sk2s4"]
 [ext_resource type="Script" path="res://scene/scripts/gameplay/player/player.gd" id="2_q17di"]
 [ext_resource type="AudioStream" uid="uid://bcn1broll0kpg" path="res://sounds/player sounds/punch.mp3" id="3_hr6qm"]
 [ext_resource type="AudioStream" uid="uid://84lb57igi6da" path="res://sounds/player sounds/uppercutCheer.ogg" id="3_uk4dx"]
@@ -398,7 +398,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [node name="Player" type="Sprite2D"]
 position = Vector2(128, 136)
 scale = Vector2(1, 0.944444)
-texture = ExtResource("1_27sfm")
+texture = ExtResource("1_sk2s4")
 hframes = 14
 frame = 5
 script = ExtResource("2_q17di")

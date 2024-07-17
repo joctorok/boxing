@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ducr8pin41yn3"
-path="res://.godot/imported/coilPortrait3.png-7e34927a5120152dd5d9d0fa151c136c.ctex"
+uid="uid://cgutu1wbqsj2j"
+path="res://.godot/imported/particleBotanik.png-46a275fbe8702e5f918ce1f9199cd26e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/coilPortrait3.png"
-dest_files=["res://.godot/imported/coilPortrait3.png-7e34927a5120152dd5d9d0fa151c136c.ctex"]
+source_file="res://sprites/particles/particleBotanik.png"
+dest_files=["res://.godot/imported/particleBotanik.png-46a275fbe8702e5f918ce1f9199cd26e.ctex"]
 
 [params]
 

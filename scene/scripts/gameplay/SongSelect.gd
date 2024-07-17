@@ -13,6 +13,8 @@ func _ready():
 	tween.tween_property($Scroll, "position:x", 100, .75)
 	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween2.tween_property($Scroll, "position:y", 35, .75)
+	var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween3.tween_property($CoilPortrait1, "position:y", 93, .75)
 	tween2.finished.connect(start_input)
 	for song in LevelManager.levelList:
 		var chartInSong = readJSON("res://songs/"+song+"/" + song+".json")

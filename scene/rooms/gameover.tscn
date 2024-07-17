@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://f32g08w8psa7"]
+[gd_scene load_steps=9 format=3 uid="uid://f32g08w8psa7"]
 
-[ext_resource type="Texture2D" uid="uid://jq75jf40gfnh" path="res://sprites/characters/boxer_dead.png" id="1_4to6h"]
+[ext_resource type="Texture2D" uid="uid://jq75jf40gfnh" path="res://sprites/characters/players/coilDead.png" id="1_4to6h"]
 [ext_resource type="Script" path="res://scene/scripts/gameplay/gameover.gd" id="1_dkyvu"]
 [ext_resource type="AudioStream" uid="uid://b7ytevsk4wglf" path="res://sounds/player sounds/damaged.mp3" id="3_44bf1"]
 [ext_resource type="AudioStream" uid="uid://5a7o62wkd2df" path="res://music/gameover.ogg" id="4_jt7qq"]
-[ext_resource type="FontFile" uid="uid://brn61jh7cwgm7" path="res://Nintendo-DS-BIOS.ttf" id="5_o8n7m"]
+[ext_resource type="PackedScene" uid="uid://8gim7dabpts8" path="res://scene/gui/Textbox.tscn" id="5_vf8yg"]
 
 [sub_resource type="Animation" id="Animation_gh1js"]
 length = 0.001
@@ -117,11 +117,6 @@ _data = {
 "player_death": SubResource("Animation_3twhl")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_m1uou"]
-font = ExtResource("5_o8n7m")
-font_size = 15
-font_color = Color(0, 0, 0, 1)
-
 [node name="gameover" type="Node2D"]
 script = ExtResource("1_dkyvu")
 
@@ -161,17 +156,8 @@ volume_db = -0.658
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 32.0
-offset_top = 24.0
-offset_right = 232.0
-offset_bottom = 72.0
-text = "Well, don't just lie there. Press ENTER to try again. If you're too much of a wimp, just hurry up and press ESCAPE!"
-label_settings = SubResource("LabelSettings_m1uou")
-horizontal_alignment = 1
-autowrap_mode = 2
-visible_characters = 0
-visible_ratio = 0.0
+[node name="Textbox" parent="CanvasLayer" instance=ExtResource("5_vf8yg")]
+position = Vector2(32, 8)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="finished" from="music" to="." method="_on_music_finished"]

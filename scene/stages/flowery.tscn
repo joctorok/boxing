@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scene/stages/flowery.gd" id="1_pi4o6"]
 [ext_resource type="Texture2D" uid="uid://d1indje6k67q" path="res://sprites/bg/ring.png" id="2_v3p2d"]
-[ext_resource type="Texture2D" uid="uid://cgutu1wbqsj2j" path="res://particleBotanik.png" id="3_p6nhm"]
+[ext_resource type="Texture2D" uid="uid://cgutu1wbqsj2j" path="res://sprites/particles/particleBotanik.png" id="3_p6nhm"]
 
 [sub_resource type="Gradient" id="Gradient_wg1vi"]
 offsets = PackedFloat32Array(0, 0.537143, 1)

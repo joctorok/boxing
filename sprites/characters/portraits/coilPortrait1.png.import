@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4ysug1aaqjg5"
-path="res://.godot/imported/button_theme.png-f81617c7fc8335a34090ea3bcbce1811.ctex"
+uid="uid://cdx3qn7l4u8hs"
+path="res://.godot/imported/coilPortrait1.png-6b38d6519a8bd381d0aadd5a29147020.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://button_theme.png"
-dest_files=["res://.godot/imported/button_theme.png-f81617c7fc8335a34090ea3bcbce1811.ctex"]
+source_file="res://sprites/characters/portraits/coilPortrait1.png"
+dest_files=["res://.godot/imported/coilPortrait1.png-6b38d6519a8bd381d0aadd5a29147020.ctex"]
 
 [params]
 

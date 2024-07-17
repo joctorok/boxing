@@ -1,7 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://dn51kcd5qsg3d"]
+[gd_scene load_steps=4 format=3 uid="uid://br2x54uypeqr0"]
 
-[ext_resource type="Script" path="res://ChartNote.gd" id="1_43sjq"]
 [ext_resource type="Texture2D" uid="uid://c6nq3b6nqywqa" path="res://sprites/gui/Notes.png" id="1_e54g8"]
+
+[sub_resource type="GDScript" id="GDScript_lw4og"]
+script/source = "extends Area2D
+
+var active : bool
+@onready var sprite = $Sprite2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if active and Input.is_action_just_pressed(\"chart_place\"):
+		queue_free()
+	pass
+
+
+func _on_mouse_exited():
+	active = false
+	pass # Replace with function body.
+
+
+func _on_mouse_entered():
+	active = true
+	pass # Replace with function body.
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fujq8"]
 radius = 16.0
@@ -9,7 +36,7 @@ radius = 16.0
 [node name="Note" type="Area2D"]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_43sjq")
+script = SubResource("GDScript_lw4og")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_e54g8")
