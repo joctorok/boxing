@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqayy2c1oxujc"]
+[gd_scene load_steps=7 format=3 uid="uid://cqayy2c1oxujc"]
 
 [ext_resource type="Script" path="res://scene/stages/ring.gd" id="1_fn1c2"]
-[ext_resource type="Texture2D" uid="uid://d1indje6k67q" path="res://sprites/bg/ring.png" id="2_56ko0"]
+[ext_resource type="Texture2D" uid="uid://bjbu2lj8bdm0f" path="res://sprites/bg/stage/bg1.png" id="2_r57rv"]
+[ext_resource type="Texture2D" uid="uid://03gyuofad1ff" path="res://sprites/bg/stage/people.png" id="3_ryt2k"]
+[ext_resource type="Texture2D" uid="uid://bxu6abp3pivj5" path="res://sprites/bg/stage/ring.png" id="4_e7x3y"]
+[ext_resource type="Texture2D" uid="uid://dbnw6ei1ayc58" path="res://sprites/bg/stage/lights.png" id="5_3ui13"]
 
 [sub_resource type="Gradient" id="Gradient_uupkl"]
 offsets = PackedFloat32Array(0, 0.537143, 1)
@@ -10,31 +13,52 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 [node name="Ring" type="Node2D"]
 script = ExtResource("1_fn1c2")
 
-[node name="bgExpand" type="ColorRect" parent="."]
-offset_left = -64.0
-offset_top = -40.0
-offset_right = 320.0
-offset_bottom = 224.0
-color = Color(0.87451, 0.321569, 0.466667, 1)
+[node name="Bg1" type="Sprite2D" parent="."]
+position = Vector2(128, 72)
+texture = ExtResource("2_r57rv")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-self_modulate = Color(0.87576, 0.322302, 0.466857, 1)
-position = Vector2(128, 96)
-texture = ExtResource("2_56ko0")
+[node name="CrowdFront" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0.156863)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_right = 56.0
+offset_bottom = 40.0
+pivot_offset = Vector2(0, 128)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 48.0
-offset_top = 96.0
-offset_right = 208.0
-offset_bottom = 104.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(3.1285e-07, 0.36401, 0.357151, 0.317647)
+[node name="People2" type="Sprite2D" parent="CrowdFront"]
+modulate = Color(1, 1, 1, 0.141176)
+position = Vector2(104, -16)
+texture = ExtResource("3_ryt2k")
+
+[node name="People3" type="Sprite2D" parent="CrowdFront"]
+self_modulate = Color(1, 1, 1, 0.278431)
+position = Vector2(128, 8)
+texture = ExtResource("3_ryt2k")
+
+[node name="People4" type="Sprite2D" parent="CrowdFront"]
+modulate = Color(1, 1, 1, 0.513726)
+position = Vector2(104, 32)
+texture = ExtResource("3_ryt2k")
+
+[node name="People5" type="Sprite2D" parent="CrowdFront"]
+modulate = Color(1, 1, 1, 0.658824)
+position = Vector2(128, 48)
+texture = ExtResource("3_ryt2k")
+
+[node name="People6" type="Sprite2D" parent="CrowdFront"]
+modulate = Color(1, 1, 1, 0.407843)
+position = Vector2(112, 72)
+texture = ExtResource("3_ryt2k")
+
+[node name="Ring" type="Sprite2D" parent="."]
+position = Vector2(128, 48)
+texture = ExtResource("4_e7x3y")
+
+[node name="Lights" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.298039)
+position = Vector2(130, 32)
+texture = ExtResource("5_3ui13")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(88, 0)
@@ -48,5 +72,5 @@ angular_velocity_min = -146.02
 angular_velocity_max = 503.5
 scale_amount_min = 0.0
 scale_amount_max = 2.0
-color = Color(1, 1, 1, 0.768627)
+color = Color(0.827586, 0.903683, 1, 1)
 color_ramp = SubResource("Gradient_uupkl")

@@ -32,7 +32,7 @@ func _process(delta):
 #func _on_button_mouse_entered():
 func selected():
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property($Control, "position:y", 6, .25)
+	tween.tween_property($Control, "position:y", 26, .25)
 	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween2.tween_property($Control/ColorRect, "color", Color(Color(1, 1, 1, 1)), .25)
 	pass # Replace with function body.
@@ -41,7 +41,7 @@ func selected():
 #func _on_button_mouse_exited():
 func deselected():
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property($Control, "position:y", 12, .25)
+	tween.tween_property($Control, "position:y", 32, .25)
 	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween2.tween_property($Control/ColorRect, "color", Color(Color(.5,.5,.5, 1)), .25)
 	pass # Replace with function body.

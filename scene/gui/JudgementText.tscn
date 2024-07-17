@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyr03wp2vmjdn"]
+
+[ext_resource type="Script" path="res://scene/gui/JudgementText.gd" id="1_c6wy0"]
+[ext_resource type="FontFile" uid="uid://brn61jh7cwgm7" path="res://Nintendo-DS-BIOS.ttf" id="2_23u7d"]
+
+[node name="Label" type="Label"]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 162.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_23u7d")
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+script = ExtResource("1_c6wy0")
+
+[node name="JudgmentText" type="CanvasLayer" parent="."]

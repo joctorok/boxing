@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/menu_scene.gd" id="1_4lygl"]
 [ext_resource type="Texture2D" uid="uid://dng5q0swslba7" path="res://sprites/bg/grid_bg.png" id="2_nndf6"]
-[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://Spaceport_2006.otf" id="3_4uow5"]
+[ext_resource type="FontFile" uid="uid://c08hcsmrxso5d" path="res://fonts/Spaceport_2006.otf" id="3_4uow5"]
 [ext_resource type="Texture2D" path="res://assets/title.png" id="3_ot56e"]
 [ext_resource type="AudioStream" path="res://music/titlescreen.mp3" id="3_vmsud"]
-[ext_resource type="Texture2D" uid="uid://c08hcsmrxso5d" path="res://Spaceport_2006.otf" id="4_8dokx"]
+[ext_resource type="Texture2D" uid="uid://c08hcsmrxso5d" path="res://fonts/Spaceport_2006.otf" id="4_8dokx"]
 
 [sub_resource type="Animation" id="Animation_7qxju"]
 length = 0.001

@@ -10,7 +10,7 @@ extends Sprite2D
 
 @onready var dodgeTimer : = $DodgeTimer
 @onready var ghostTimer : = $GhostTimer
-
+@onready var cheerTimer : = $CheerTimer
 
 var ghost_scene = preload("res://scene/objects/Ghost.tscn")
 
@@ -51,26 +51,23 @@ func Animator(animName, sfxIndex):
 	sfxIndex.stop()
 	aniPlayer.play(animName)
 	sfxIndex.play(sfxOffset)
-	pass
 
 func Uppercut():
-	inUppercut = false
+	$Timer.start(0.05)
 	Animator("uppercut", sfxUppercut)
 	if PlayerAutoloads.healthPoints < PlayerAutoloads.maxHealthPoints:
 		PlayerAutoloads.healthPoints += 4
 	PlayerAutoloads.score += 40
-	pass
 
 func Idle():
+	inUppercut = false
 	ghostTimer.stop()
 	aniPlayer.play("idle")
-
 
 func _on_dodge_timer_timeout():
 	ghostTimer.stop()
 	isDodging = false
 	dodgeTimer.stop()
-	pass # Replace with function body.
 
 func ghostInstance():
 	var ghost = ghost_scene.instantiate()
@@ -85,7 +82,6 @@ func ghostInstance():
 
 func _on_ghost_timer_timeout():
 	ghostInstance()
-	pass # Replace with function body.
 
 func _on_results_play_anim():
 	match PlayerAutoloads.curRank:
@@ -93,36 +89,54 @@ func _on_results_play_anim():
 			Animator("damaged", sfxHurt)
 		PlayerAutoloads.Ranks.DEMONEYES:
 			Animator("block", sfxBlock)
-	pass # Replace with function body.
 
-func Hit(action : String, points : int, hpGain : float):
+func Hit(action : int, points : int, hpGain : float):
 	get_parent().cueIncoming = false
 	PlayerAutoloads.score += points
-	PlayerAutoloads.healthPoints += hpGain
+	if PlayerAutoloads.healthPoints < PlayerAutoloads.maxHealthPoints:
+		PlayerAutoloads.healthPoints += hpGain
 	match action:
-		"Punch":
-			Animator("punchL", sfxPunch)
+		1:
+			punchIndex *= -1
+			if punchIndex > 0:
+				Animator("punchL", sfxPunch)
+			else:
+				Animator("punchR", sfxPunch)
 			hit_cue.emit(1)
-		"DodgeLeft":
+		2:
 			Animator("dodgeL", sfxDodge)
 			hit_cue.emit(2)
 			isDodging = true
 			dodgeTimer.stop()
 			dodgeTimer.start(0.6)
 			ghostTimer.start(0.02)
-		"DodgeRight":
+		3:
 			Animator("dodgeR", sfxDodge)
 			hit_cue.emit(3)
 			isDodging = true
 			dodgeTimer.stop()
 			dodgeTimer.start(0.6)
 			ghostTimer.start(0.02)
-		"Block":
+		4:
 			Animator("block", sfxBlock)
 			hit_cue.emit(4)
 
 func Damage(dmg : float, points : int):
 	get_parent().cueIncoming = false
 	Animator("damaged", sfxHurt)
+	if (get_parent().GUI.has_node("GoForDE")):
+		get_parent().GUI.get_node("GoForDE").queue_free()
 	PlayerAutoloads.score -= points
+	PlayerAutoloads.missCount += 1
 	PlayerAutoloads.healthPoints -= dmg
+
+func _on_timer_timeout():
+	$Timer.stop()
+	inUppercut = false
+	pass # Replace with function body.
+
+
+func _on_cheer_timer_timeout():
+	$CheerSFX.play()
+	cheerTimer.stop()
+	pass # Replace with function body.

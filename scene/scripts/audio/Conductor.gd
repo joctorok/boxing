@@ -58,7 +58,7 @@ func beatProcess():
 					ucTimer.start(uppercutData[0] * crochet)	
 		if ucTimer.time_left > 0:
 			$Ping.play(0.028)
-		emit_signal("beatHit")
+		emit_signal("beatHit")  
 		lastBeat += crochet
 
 func readJSON(path : String):

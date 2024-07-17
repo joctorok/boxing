@@ -3,6 +3,15 @@ extends Node2D
 var cueIncoming : bool
 var cueType : int
 var curCueTime : float
+var safeZone : float
+
+
+
+var judgementText = preload("res://scene/gui/JudgementText.tscn")
+var goForDE = preload("res://scene/gui/GoForDE.tscn")
+var resultsScreen = preload("res://scene/gui/resultsPopup.tscn")
+
+@onready var GUI = $GUI
 
 @onready var player : = $Player
 @onready var conductor : = $Conductor
@@ -22,25 +31,21 @@ var current_bot : String
 @onready var dim : = $GUI/ColorRect
 @onready var flash : = $GUI/Flash
 
+var noteRatings = ["Early!", "Just Right!", "Late.."]
+
 var canHit : bool
 var canSkip : bool
 var canExit : bool
 
 var highestRank : int
 
-func calculate_timing_windows():
-	if (conductor.songPosition < 
-	(conductor.lastBeat + conductor.crochet) + 0.10) and (conductor.songPosition > 
-	(conductor.lastBeat + conductor.crochet) - 
-	0.10):
-		canHit = true	
-	else:
-		canHit = false		
-
 func _ready():
 	if FileAccess.file_exists("user://" + LevelManager.currentLevel + ".json"):
 		var save = readJSON("user://" + LevelManager.currentLevel + ".json")
 		highestRank = save.data.rank
+	if highestRank < PlayerAutoloads.Ranks.DEMONEYES:
+		var DE = goForDE.instantiate()
+		GUI.add_child(DE)
 	canExit = true 
 	PlayerAutoloads.curAccuracy = 1
 	PlayerAutoloads.missCount = 0
@@ -65,6 +70,7 @@ func _ready():
 		timer.wait_time = 0
 		timer.timeout.connect(_hide_song_info)
 		timer.start(5)
+	safeZone = conductor.crochet/2
 	var cues : Array = chartData.song.cues_to_play
 	var uc : Array = chartData.song.uppercuts
 	PlayerAutoloads.maxMisses = len(cues) + len(uc)
@@ -77,9 +83,8 @@ func _ready():
 	cueIncoming = false
 
 func _process(delta):
-	calculate_timing_windows()
 	$GUI/Score.text = "Score: " + str(PlayerAutoloads.score)
-	if PlayerAutoloads.healthPoints == 0:
+	if PlayerAutoloads.healthPoints <= 0:
 		get_tree().change_scene_to_file("res://scene/rooms/gameover.tscn")
 	if Input.is_action_just_pressed("gm_quit") && canExit:
 		canExit = false
@@ -93,8 +98,8 @@ func _process(delta):
 
 func _on_conductor_cue_hit(x, y):
 	cueIncoming = true
-	cueType = x
-	curCueTime = y
+	cueType = x 
+	curCueTime = (y) * conductor.crochet
 	match cueType:
 		1:
 			cueHai.play()
@@ -117,7 +122,7 @@ func _on_conductor_cue_hit(x, y):
 	cueTimer.autostart = false
 	cueTimer.wait_time = 0
 	cueTimer.timeout.connect(_on_cue_timer_timeout)
-	cueTimer.start(conductor.crochet + 0.10)
+	cueTimer.start(conductor.crochet + 0.16)
 	pass # Replace with function body.
 
 func _on_cue_timer_timeout():
@@ -127,14 +132,13 @@ func _on_cue_timer_timeout():
 		cueIncoming = false
 
 func _on_conductor_change_cam_scale(x, y, z):
-	CamChange(Vector2(x,x))
 	$Player/RemoteTransform2D.update_position = z
+	CamChange(Vector2(x,x))
 	pass # Replace with function body.
 
 func _on_conductor_uppercut_hit(x, y):
 	player.inUppercut = true
 	uppercut_create(x*conductor.crochet)
-	
 	pass # Replace with function body.
 
 func uppercut_create(x):
@@ -145,17 +149,16 @@ func uppercut_create(x):
 
 func _on_uppercut_handler_hit_uc(): 
 	player.Uppercut()
+	player.cheerTimer.start(conductor.crochet)
 	bot.damage_self()
 	Flash()
 	Dim(Color(Color(0, 0, 0, 0)))
 	CamChange(Vector2(1,1))
-	
 	pass # Replace with function body.
 
 func _on_uppercut_handler_miss_uc():
 	player.Damage(4, 20)
 	bot.punch_player("L")
-	player.inUppercut = false
 	CamChange(Vector2(1,1))
 	Dim(Color(Color(0, 0, 0, 0)))
 	pass # Replace with function body.
@@ -177,8 +180,12 @@ func Flash():
 func _on_conductor_text_display(x, y):
 	textbox.label.text = x
 	textbox.show_text()
+	if (GUI.has_node("GoForDE")):
+		GUI.get_node("GoForDE").Dim()
 	if x == "":
 		textbox.hide_text()
+		if (GUI.has_node("GoForDE")):
+			GUI.get_node("GoForDE").ReturnOpacity()
 	pass # Replace with function body.
 
 func _on_block_timer_timeout():
@@ -197,28 +204,26 @@ func _on_skip_timer_timeout():
 func _on_conductor_finished():
 	#if not LevelManager.inTutorial:
 		saveScore()
-		$GUI/HealthBar.hide()
-		$GUI/Score.hide()
-		textbox.hide()
-		$GUI/Results.start_ranking(PlayerAutoloads.curAccuracy)
-		$GUI/SkipText.hide()
+		GUI.hide()
+		var results = resultsScreen.instantiate()
+		add_child(results)
+		results.start_ranking(PlayerAutoloads.curAccuracy)
 		CamChange(Vector2(1.5, 1.5))
 #	else:
 		#LevelManager.go_to_level(LevelManager.levelIndex + 1)
 #	pass # Replace with function body.
 
 func saveScore():
-	var filePath : String = "user://" + LevelManager.currentLevel + ".json"
-	var save = FileAccess.open(filePath, FileAccess.WRITE)
-	var dict = {
-		"data" : {"score" : PlayerAutoloads.score,
-		"rank" : PlayerAutoloads.curRank}
-	}
-	var string = JSON.stringify(dict)
 	if PlayerAutoloads.curRank > highestRank:
+		var filePath : String = "user://" + LevelManager.currentLevel + ".json"
+		var save = FileAccess.open(filePath, FileAccess.WRITE)
+		var dict = {
+			"data" : {"score" : PlayerAutoloads.score,
+			"rank" : PlayerAutoloads.curRank}
+		}
+		var string = JSON.stringify(dict)
 		save.store_string(string)
 		save.close()
-	print(dict)
 	return
 
 func readJSON(path : String):
@@ -237,19 +242,44 @@ func _on_timer_timeout():
 
 func go_to_menu():
 		SceneSwitcher.start_transition("res://scene/rooms/SongSelect.tscn", 1)
-	
-
 
 func _on_player_input_press(x):
-	if canHit && x == cueType:
-		match x:
-			1:
-				player.Hit("Punch", 20, 2)
-			2:
-				player.Hit("DodgeLeft", 20, 2)
-			3:
-				player.Hit("DodgeRight", 20, 2)
-			4:
-				player.Hit("Block", 40, 4)
-			
-	pass # Replace with function body.
+	if player.inUppercut == false and cueIncoming:
+		cueIncoming = false
+		var dist = (conductor.songPosition - curCueTime)
+		if abs(dist) <= safeZone:
+			if cueType == x:
+				var curNoteRating : String
+				var scoreIncrement : float
+				var hpIncrement : float
+				if abs(dist) > safeZone/4:
+					scoreIncrement = 10
+					hpIncrement = 0
+					if dist > 0:
+						curNoteRating = noteRatings[2]
+					else:
+						curNoteRating = noteRatings[0]
+				else:
+					scoreIncrement = 20
+					hpIncrement = 2
+					curNoteRating = noteRatings[1]
+				player.Hit(x, scoreIncrement, hpIncrement)
+				var i = judgementText.instantiate()
+				GUI.add_child(i)
+				i.text = curNoteRating + " +" + str(scoreIncrement)
+				print(curNoteRating)
+			else:
+				var i = judgementText.instantiate()
+				GUI.add_child(i)
+				i.text = "Ouch..."
+				player.Damage(2, 10)
+		else:
+			if dist > 0:
+				var i = judgementText.instantiate()
+				GUI.add_child(i)
+				i.text = "Too Late..."
+			else:
+				var i = judgementText.instantiate()
+				GUI.add_child(i)
+				i.text = "Too Early..."
+			player.Damage(2, 10)

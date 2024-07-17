@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dysy0ojqquyh5"]
 
-[ext_resource type="Script" path="res://scripts/gui/uppercutHandler.gd" id="1_fu688"]
+[ext_resource type="Script" path="res://scene/scripts/gui/uppercutHandler.gd" id="1_fu688"]
 [ext_resource type="Texture2D" uid="uid://c2vsxx28ejldj" path="res://sprites/gui/uppercut1.png" id="2_8yf3x"]
 [ext_resource type="Texture2D" uid="uid://fm6wqy1ou6on" path="res://sprites/gui/uppercut2.png" id="3_03l8n"]
 [ext_resource type="FontFile" uid="uid://jxerprayhk57" path="res://fonts/NintendoDSBIOS.ttf" id="4_5bnbu"]

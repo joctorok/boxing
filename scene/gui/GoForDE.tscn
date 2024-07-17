@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cihfsuu15eh7a"]
+
+[ext_resource type="Script" path="res://scene/scripts/gui/GoForDE.gd" id="1_ynw2j"]
+[ext_resource type="FontFile" uid="uid://jxerprayhk57" path="res://fonts/NintendoDSBIOS.ttf" id="2_df418"]
+[ext_resource type="Texture2D" uid="uid://bd6xptej5mmjr" path="res://sprites/rankIcons/demoneyesRankIcon.png" id="3_ahlvs"]
+
+[node name="GoForDE" type="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 128.0
+offset_right = 256.0
+offset_bottom = 24.0
+script = ExtResource("1_ynw2j")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_df418")
+theme_override_font_sizes/font_size = 16
+text = "Go for a DEMONEYES"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(115.25, 12.25)
+scale = Vector2(0.728571, 0.742424)
+texture = ExtResource("3_ahlvs")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx8jbnsy55vwb"]
 
-[ext_resource type="Script" path="res://scripts/gui/Strum.gd" id="1_5v0fe"]
+[ext_resource type="Script" path="res://scene/scripts/gui/Strum.gd" id="1_5v0fe"]
 [ext_resource type="Texture2D" uid="uid://dc4ejkac7d11x" path="res://sprites/gui/noteBackdrop.png" id="2_qb2ht"]
-[ext_resource type="PackedScene" uid="uid://cmb7l26bmpamp" path="res://note.tscn" id="3_xh3tx"]
+[ext_resource type="PackedScene" path="res://note.tscn" id="3_xh3tx"]
 
 [node name="Strum" type="Node2D"]
 script = ExtResource("1_5v0fe")

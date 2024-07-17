@@ -14,6 +14,6 @@ func _process(delta):
 	pass
 
 func onBeatHit():
-	$ColorRect.size.y = 64
+	$CrowdFront.scale.y = 0.975
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property($ColorRect, "size:y", 8, 0.25)
+	tween.tween_property($CrowdFront, "scale:y", 1, 0.25)

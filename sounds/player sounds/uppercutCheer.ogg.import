@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://84lb57igi6da"
+path="res://.godot/imported/uppercutCheer.ogg-f8a0ca3e5464688966e426d3b0127b90.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/player sounds/uppercutCheer.ogg"
+dest_files=["res://.godot/imported/uppercutCheer.ogg-f8a0ca3e5464688966e426d3b0127b90.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

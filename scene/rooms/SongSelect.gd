@@ -7,16 +7,13 @@ var menuOption : int
 var canInput : bool
 
 func _ready():
+	$AnimationPlayer.play("Scroll")
 	$bg/AnimationPlayer.play("scroll")
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property($Scroll, "position:x", 100, .75)
 	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween2.tween_property($Scroll, "position:y", 40, .75)
+	tween2.tween_property($Scroll, "position:y", 35, .75)
 	tween2.finished.connect(start_input)
-	var tween3 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween3.tween_property($Label, "position:y", 12, .75)
-	var tween4 = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween4.tween_property($Label, "position:x", 100, .75)
 	for song in LevelManager.levelList:
 		var chartInSong = readJSON("res://songs/"+song+"/" + song+".json")
 		var button = songButton.instantiate()
@@ -27,7 +24,7 @@ func _ready():
 			button.tex = save.data.rank
 		else:
 			button.tex = 4
-		button.position.y = LevelManager.levelList.find(song) * 60
+		button.position.y = 5 + LevelManager.levelList.find(song) * 60
 		button.pressed.connect(switch_to_level.bind(button.get_index(false)))
 	pass # Replace with function body.
 

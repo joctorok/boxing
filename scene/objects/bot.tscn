@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://br5cms0su4vur"]
 
-[ext_resource type="Script" path="res://scripts/gameplay/game/bot.gd" id="2_o5e8l"]
+[ext_resource type="Script" path="res://scene/scripts/gameplay/game/bot.gd" id="2_o5e8l"]
 
 [sub_resource type="Animation" id="Animation_ue8u7"]
 length = 0.001

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://f32g08w8psa7"]
 
 [ext_resource type="Texture2D" uid="uid://jq75jf40gfnh" path="res://sprites/characters/boxer_dead.png" id="1_4to6h"]
-[ext_resource type="Script" path="res://scripts/gameplay/gameover.gd" id="1_dkyvu"]
+[ext_resource type="Script" path="res://scene/scripts/gameplay/gameover.gd" id="1_dkyvu"]
 [ext_resource type="AudioStream" uid="uid://b7ytevsk4wglf" path="res://sounds/player sounds/damaged.mp3" id="3_44bf1"]
 [ext_resource type="AudioStream" uid="uid://5a7o62wkd2df" path="res://music/gameover.ogg" id="4_jt7qq"]
 [ext_resource type="FontFile" uid="uid://brn61jh7cwgm7" path="res://Nintendo-DS-BIOS.ttf" id="5_o8n7m"]

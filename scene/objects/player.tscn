@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://b5a85et3hbvkt"]
+[gd_scene load_steps=20 format=3 uid="uid://b5a85et3hbvkt"]
 
 [ext_resource type="Texture2D" uid="uid://sirofax4xo2f" path="res://sprites/characters/boxer.png" id="1_27sfm"]
-[ext_resource type="Script" path="res://scripts/gameplay/player/player.gd" id="2_q17di"]
+[ext_resource type="Script" path="res://scene/scripts/gameplay/player/player.gd" id="2_q17di"]
 [ext_resource type="AudioStream" uid="uid://bcn1broll0kpg" path="res://sounds/player sounds/punch.mp3" id="3_hr6qm"]
+[ext_resource type="AudioStream" uid="uid://84lb57igi6da" path="res://sounds/player sounds/uppercutCheer.ogg" id="3_uk4dx"]
 [ext_resource type="AudioStream" uid="uid://dn3ce1xwfesx5" path="res://sounds/player sounds/dodge.mp3" id="4_pet71"]
 [ext_resource type="AudioStream" uid="uid://b7ytevsk4wglf" path="res://sounds/player sounds/damaged.mp3" id="5_ytx5e"]
 [ext_resource type="AudioStream" uid="uid://bdwexasawas40" path="res://sounds/player sounds/uppercut.mp3" id="6_qqgst"]
@@ -402,6 +403,10 @@ hframes = 14
 frame = 5
 script = ExtResource("2_q17di")
 
+[node name="CheerSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_uk4dx")
+volume_db = 1.612
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_yd8bo")
@@ -448,4 +453,10 @@ color_ramp = SubResource("Gradient_1fggr")
 stream = ExtResource("7_omev0")
 volume_db = 1.745
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CheerTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="GhostTimer" to="." method="_on_ghost_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CheerTimer" to="." method="_on_cheer_timer_timeout"]
