@@ -3,7 +3,7 @@
 		"name" : "Mixed Signals",
 		"artist" : "joctorok",
 		"bpm" : 90,
-		"enemy" : "buddy",
+		"enemy" : "coach",
 		"stage" : "ring",
 		"cues_to_play" : [
 			[1, 33],

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bifo0glcg1cd7"]
+
+[sub_resource type="GDScript" id="GDScript_xdscn"]
+script/source = "xtends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Input.is_action_just_pressed(\"ui_accept\"):
+		SceneSwitcher.start_transition(\"res://scene/rooms/menu.tscn\", 0)
+	pass
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_xdscn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 1)

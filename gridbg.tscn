@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnkybp2vh6rrp"]
+
+[ext_resource type="Texture2D" uid="uid://dqffj6vb1lxtl" path="res://sprites/gui/chartGrid.png" id="1_oppqa"]
+
+[node name="gridbg" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, 128)
+rotation = 1.5708
+texture = ExtResource("1_oppqa")

@@ -23,6 +23,7 @@ var pastCues : Array
 
 func _ready():
 	initSong()
+	print(floor(stream.get_length()/(crochet/4)))
 	#pass
 
 func _process(delta):

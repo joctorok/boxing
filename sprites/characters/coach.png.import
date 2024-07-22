@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2inuh3x2aqbu"
-path="res://.godot/imported/bg2.png-f8595e450f82282bdf7af5b485faafdc.ctex"
+uid="uid://dq4touo0kv7c5"
+path="res://.godot/imported/coach.png-8864dce078cc95cb074021fe99d3fe4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/bg/stage/bg2.png"
-dest_files=["res://.godot/imported/bg2.png-f8595e450f82282bdf7af5b485faafdc.ctex"]
+source_file="res://sprites/characters/coach.png"
+dest_files=["res://.godot/imported/coach.png-8864dce078cc95cb074021fe99d3fe4d.ctex"]
 
 [params]
 

@@ -4,7 +4,8 @@ var currentLevel : String
 
 const levelList = [
 	"tutorial1",
-	"round1"
+	"round1",
+	"round2"
 ]
 
 const tutList = [
