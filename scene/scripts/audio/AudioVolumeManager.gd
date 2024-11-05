@@ -14,13 +14,15 @@ func _input(event):
 
 #test fucntion to see if the volume goes up
 func TurnVolumeUp():
-	CurrentVolume + 10
+	CurrentVolume = clamp(CurrentVolume + 15, -80, 0)
+	$VolumeBeepSound.play()
 	AudioServer.set_bus_volume_db(masterBus, CurrentVolume)
 	pass
-	
+
 #test fucntion to see if the volume goes up
 func TurnVolumeDown():
-	CurrentVolume - 10
+	CurrentVolume = clamp(CurrentVolume - 15, -80, 0)
+	$VolumeBeepSound.play()
 	AudioServer.set_bus_volume_db(masterBus, CurrentVolume)
 	pass
 
