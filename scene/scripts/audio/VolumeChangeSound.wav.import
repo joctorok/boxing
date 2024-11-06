@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cp7xmojau2jcj"
-path="res://.godot/imported/hitsound.wav-583fb6531eb9e74f7f4447f01b1e8747.sample"
+path="res://.godot/imported/VolumeChangeSound.wav-50c050ea4b6af3d21ee6c0b548a365b9.sample"
 
 [deps]
 
-source_file="res://scene/scripts/audio/hitsound.wav"
-dest_files=["res://.godot/imported/hitsound.wav-583fb6531eb9e74f7f4447f01b1e8747.sample"]
+source_file="res://scene/scripts/audio/VolumeChangeSound.wav"
+dest_files=["res://.godot/imported/VolumeChangeSound.wav-50c050ea4b6af3d21ee6c0b548a365b9.sample"]
 
 [params]
 

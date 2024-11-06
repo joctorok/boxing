@@ -14,18 +14,22 @@ func _input(event):
 
 #test fucntion to see if the volume goes up
 func TurnVolumeUp():
-	CurrentVolume = clamp(CurrentVolume + 15, -80, 0)
+	CurrentVolume = clamp(CurrentVolume + 15.0, -80.0, 0.0)
 	$VolumeBeepSound.play()
 	AudioServer.set_bus_volume_db(masterBus, CurrentVolume)
+	PassToVolumeLabel(CurrentVolume)
 	pass
 
 #test fucntion to see if the volume goes up
 func TurnVolumeDown():
-	CurrentVolume = clamp(CurrentVolume - 15, -80, 0)
+	CurrentVolume = clamp(CurrentVolume - 15.0, -80.0, 0.0)
 	$VolumeBeepSound.play()
 	AudioServer.set_bus_volume_db(masterBus, CurrentVolume)
+	PassToVolumeLabel(CurrentVolume)
 	pass
 
-
+func PassToVolumeLabel(x):
+	get_node("Volume Label").ChangeLabel(x)
+	pass
 
 
