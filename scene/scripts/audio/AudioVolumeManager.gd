@@ -2,8 +2,16 @@ extends Node
 
 var CurrentVolume = 1.0
 
+var VolumeLabel
+
 #var for the master AudioBus
-var masterBus = AudioServer.get_bus_index("Master")
+var masterBus 
+
+
+func _ready():
+	VolumeLabel = get_node("VolumeLabel")
+	masterBus = AudioServer.get_bus_index("Master")
+	pass
 
 #Checks if current event is  "-" or "+"
 func _input(event):
@@ -11,25 +19,34 @@ func _input(event):
 		TurnVolumeDown()
 	elif event.is_action_pressed("Volume_Up"):
 		TurnVolumeUp()
+	pass
 
 #test fucntion to see if the volume goes up
 func TurnVolumeUp():
-	CurrentVolume = clamp(CurrentVolume + 15.0, -80.0, 0.0)
-	$VolumeBeepSound.play()
-	AudioServer.set_bus_volume_db(masterBus, CurrentVolume)
-	PassToVolumeLabel(CurrentVolume)
+	
+	if !VolumeLabel.CurrentDisplayValue == 100:
+		CurrentVolume = clamp(CurrentVolume + 1.0, -80.0, 0.0)
+		$VolumeBeepSound.play()
+		AudioServer.set_bus_volume_db(masterBus, CurrentVolume)
+		PassToVolumeLabel(true)
+	elif VolumeLabel.CurrentDisplayValue == 100:
+		$VolumeMaxSound.play()
 	pass
 
 #test fucntion to see if the volume goes up
 func TurnVolumeDown():
-	CurrentVolume = clamp(CurrentVolume - 15.0, -80.0, 0.0)
-	$VolumeBeepSound.play()
-	AudioServer.set_bus_volume_db(masterBus, CurrentVolume)
-	PassToVolumeLabel(CurrentVolume)
+	if !get_node("VolumeLabel").CurrentDisplayValue == 0:
+		CurrentVolume = clamp(CurrentVolume - 1.0, -80.0, 0.0)
+		$VolumeBeepSound.play()
+		AudioServer.set_bus_volume_db(masterBus, CurrentVolume)
+		PassToVolumeLabel(false)
+	elif VolumeLabel.CurrentDisplayValue == 0:
+		$VolumeMaxSound.play()
+		AudioServer.set_bus_volume_db(masterBus, -80.0)
 	pass
 
 func PassToVolumeLabel(x):
-	get_node("Volume Label").ChangeLabel(x)
+	get_node("VolumeLabel").ChangeLabel(x)
 	pass
 
 
