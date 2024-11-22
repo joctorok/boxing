@@ -25,22 +25,22 @@ func _input(event):
 func TurnVolumeUp():
 	
 	if !VolumeLabel.CurrentDisplayValue == 100:
-		CurrentVolume = clamp(CurrentVolume + 1.0, -80.0, 0.0)
+		CurrentVolume = clamp(CurrentVolume + 1.0, -80.0, 80.0)
 		$VolumeBeepSound.play()
 		AudioServer.set_bus_volume_db(masterBus, CurrentVolume)
 		PassToVolumeLabel(true)
-	elif VolumeLabel.CurrentDisplayValue == 100:
+	if VolumeLabel.CurrentDisplayValue == 100:
 		$VolumeMaxSound.play()
 	pass
 
 #test fucntion to see if the volume goes up
 func TurnVolumeDown():
 	if !get_node("VolumeLabel").CurrentDisplayValue == 0:
-		CurrentVolume = clamp(CurrentVolume - 1.0, -80.0, 0.0)
+		CurrentVolume = clamp(CurrentVolume - 1.0, -80.0, 80.0)
 		$VolumeBeepSound.play()
 		AudioServer.set_bus_volume_db(masterBus, CurrentVolume)
 		PassToVolumeLabel(false)
-	elif VolumeLabel.CurrentDisplayValue == 0:
+	if VolumeLabel.CurrentDisplayValue < 2:
 		$VolumeMaxSound.play()
 		AudioServer.set_bus_volume_db(masterBus, -80.0)
 	pass
