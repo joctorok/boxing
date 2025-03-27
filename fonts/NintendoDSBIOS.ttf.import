@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/NintendoDSBIOS.ttf-c7593b0d369be25a2af8541207
 Rendering=null
 antialiasing=0
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
